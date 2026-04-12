@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import type { Product } from '../components/ProductCard';
-import { Search, SlidersHorizontal } from 'lucide-react';
+import { Search, SlidersHorizontal, SearchX } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const allProducts: Product[] = [
@@ -128,8 +128,8 @@ const Products: React.FC = () => {
           <ProductCard key={product.id} product={product} />
         ))}
         {filteredProducts.length === 0 && (
-          <div className="col-span-full py-24 md:py-32 text-center space-y-4 opacity-40">
-            <span className="material-symbols-outlined text-7xl md:text-8xl">search_off</span>
+          <div className="col-span-full py-24 md:py-32 text-center flex flex-col items-center space-y-4 opacity-40">
+            <SearchX size={80} strokeWidth={1} />
             <p className="text-lg md:text-xl font-headline italic">No relics found matching your search.</p>
           </div>
         )}

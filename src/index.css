@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --primary: #570000;
+  --primary: #8f0f07;
   --on-primary: #ffffff;
   --primary-container: #800000;
   --on-primary-container: #ff8371;
-  --secondary: #a04100;
+  --secondary: #ff5625;
   --on-secondary: #ffffff;
-  --secondary-container: #ff7a2e;
-  --on-secondary-container: #612500;
-  --tertiary: #262727;
-  --on-tertiary: #ffffff;
-  --tertiary-container: #3c3d3d;
-  --on-tertiary-container: #a7a7a7;
+  --secondary-container: #ff5625;
+  --on-secondary-container: #541100;
+  --tertiary: #e9c400;
+  --on-tertiary: #3a3000;
+  --tertiary-container: #c9a900;
+  --on-tertiary-container: #4c3e00;
   --error: #ba1a1a;
   --on-error: #ffffff;
   --error-container: #ffdad6;
@@ -64,6 +64,24 @@
   --surface-container: #3b120d;
   --surface-container-high: #491c16;
   --surface-container-highest: #562720;
+  --surface-bright: #5c2b24;
+  --surface-dim: #2b0604;
+  --surface-tint: #ffb4a8;
+  --inverse-surface: #ffdad4;
+  --inverse-on-surface: #51221c;
+  --inverse-primary: #b22b1d;
+  --primary-fixed: #ffdad4;
+  --primary-fixed-dim: #ffb4a8;
+  --on-primary-fixed: #410000;
+  --on-primary-fixed-variant: #8f0f07;
+  --secondary-fixed: #ffdbd1;
+  --secondary-fixed-dim: #ffb5a0;
+  --on-secondary-fixed: #3b0900;
+  --on-secondary-fixed-variant: #872000;
+  --tertiary-fixed: #ffe16d;
+  --tertiary-fixed-dim: #e9c400;
+  --on-tertiary-fixed: #221b00;
+  --on-tertiary-fixed-variant: #544600;
 }
 
 @layer base {
@@ -76,7 +94,7 @@
   body {
     background-color: var(--background);
     color: var(--on-surface);
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     min-height: 100vh;
     transition: background-color 0.3s, color 0.3s;
@@ -85,14 +103,28 @@
     position: relative;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: 'Noto Serif', serif;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montaga', serif;
   }
+}
+
+.glass-panel {
+    background: rgba(92, 43, 36, 0.4);
+    backdrop-filter: blur(20px);
+}
+
+.glow-hover:hover {
+    box-shadow: 0 0 20px 2px rgba(255, 86, 37, 0.2);
+}
+
+.radial-sanctuary {
+    background: radial-gradient(circle at 50% 50%, #562720 0%, #2b0604 100%);
+}
+
+.text-gradient-gold {
+    background: linear-gradient(to right, #ffb4a8, #e9c400);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 /* Custom Scrollbar for desktop */
@@ -129,28 +161,24 @@
   }
 }
 
-.text-devotional {
-  font-family: 'Great Vibes', cursive;
-}
-
-.glass-morphism {
-  backdrop-filter: blur(8px);
-  background-color: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-}
-
-.dark .glass-morphism {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.divine-gradient {
-  background: linear-gradient(to bottom right, var(--primary), var(--primary-container));
-}
-
-.glow-maroon {
-  box-shadow: 0 0 40px rgba(128, 0, 0, 0.4);
-}
-
 .smooth-transition {
   transition: all 0.3s ease-in-out;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.glare-text {
+  background: linear-gradient(
+    90deg,
+    var(--tertiary) 0%,
+    #ffffff 50%,
+    var(--tertiary) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s infinite linear;
 }

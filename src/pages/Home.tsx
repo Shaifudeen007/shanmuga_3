@@ -1,365 +1,321 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import Button from '../components/Button';
-import ProductCard from '../components/ProductCard';
-import type { Product } from '../components/ProductCard';
-import { ArrowRight, ArrowDown, ArrowLeft, Sparkles, ShieldCheck, Heart } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Heart, Landmark, ArrowRight, Eye } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const featuredProducts: Product[] = [
-  {
-    id: '1',
-    name: 'Saffron Silk Deity Robe',
-    price: 4500,
-    category: 'God Clothing',
-    image: 'https://images.unsplash.com/photo-1583089892943-e02e5b017b6a?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: '2',
-    name: 'Antique Gold Kavacham',
-    price: 12500,
-    category: 'Ornaments',
-    image: 'https://images.unsplash.com/photo-1606293926075-69a00dbfde81?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: '3',
-    name: 'Emerald Studded Crown',
-    price: 8900,
-    category: 'Ornaments',
-    image: 'https://images.unsplash.com/photo-1599481238332-b21a93fb12d7?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: '4',
-    name: 'Velvet Peetham Cover',
-    price: 2800,
-    category: 'Custom Designs',
-    image: 'https://images.unsplash.com/photo-1544967082-d9d25d867d66?auto=format&fit=crop&q=80&w=800',
-  },
-];
-
-const slides = [
-  {
-    tag: "Artisanal Excellence",
-    title: "Lorem Ipsum Dolor",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    image: "/assets/hero-1.jpg",
-    type: "image",
-    primaryBtn: "Customize",
-    secondaryBtn: "Our Portfolio"
-  },
-  {
-    tag: "Sacred Relics",
-    title: "Consectetur Adipiscing",
-    description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    image: "/assets/hero-2.jpg",
-    type: "image",
-    primaryBtn: "Explore",
-    secondaryBtn: "About Us"
-  },
-  {
-    tag: "Traditional Wear",
-    title: "Tempor Incididunt",
-    description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    image: "/assets/hero-3.jpg",
-    type: "image",
-    primaryBtn: "Shop Now",
-    secondaryBtn: "Collections"
-  },
-  {
-    tag: "Premium Quality",
-    title: "Magna Aliqua Ut",
-    description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    image: "/assets/hero-4.jpg",
-    type: "image",
-    primaryBtn: "Order Custom",
-    secondaryBtn: "Process"
-  }
+const heroImages = [
+  '/assets/hero-deity-1.jpg',
+  '/assets/hero-deity-2.jpg',
+  '/assets/hero-deity-3.jpg',
+  '/assets/hero-deity-4.jpg',
 ];
 
 const Home: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const containerRef = React.useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-
-  const nextSlide = React.useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % slides.length);
-  }, []);
-
-  const prevSlide = React.useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
-  }, []);
-
-  const scrollToContent = () => {
-    const nextSection = document.getElementById('featured-products');
-    if (nextSection) {
-      const navbarHeight = 84;
-      const targetPosition = nextSection.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 5000);
-    return () => clearInterval(interval);
-  }, [nextSlide]);
+    const timer = setInterval(() => {
+      setCurrentHeroIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden bg-background">
       {/* Hero Section */}
-      <section ref={containerRef} className="carousel-wrapper group overflow-hidden relative min-h-[600px] md:h-screen bg-background pt-0 flex flex-col md:flex-row">
-        {/* Custom Notch SVG Shape */}
-        <div className="absolute bottom-0 left-1/4 -translate-x-1/2 z-40 w-32 h-10 hidden md:block pointer-events-none">
-          <svg viewBox="0 0 120 40" className="w-full h-full fill-background transition-colors">
-            <path d="M0 40 C10 40 20 0 60 0 C100 0 110 40 120 40 Z" />
-          </svg>
-        </div>
-
-        {/* Carousel Content */}
-        <div className="relative w-full md:w-1/2 h-screen md:h-full overflow-hidden z-0">
-          <div
-            className="flex h-full transition-transform duration-700 ease-in-out"
-            style={{
-              width: `${slides.length * 100}%`,
-              transform: `translateX(-${currentIndex * (100 / slides.length)}%)`
-            }}
+      <section className="relative h-[calc(100dvh-40px)] md:h-auto md:min-h-[90vh] flex items-center justify-center overflow-hidden pt-0 md:pt-24 pb-12 mt-0 md:mt-0">
+        <div className="absolute inset-0 radial-sanctuary opacity-60"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background to-background"></div>
+        <div className="container mx-auto px-10 md:px-28 grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10 h-full">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex md:block flex-col space-y-4 md:space-y-5 max-w-2xl absolute md:relative z-30 bottom-32 left-6 right-6 md:inset-auto p-0 md:pl-12 text-left md:text-left shadow-none"
           >
-            {slides.map((slide, index) => (
-              <div
-                key={index}
-                className="relative overflow-hidden h-full flex-shrink-0"
-                style={{ width: `${100 / slides.length}%` }}
-              >
-                <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/20 to-transparent md:hidden"></div>
-                <motion.div style={{ y }} className="absolute inset-0 w-full h-full">
-                  <img
-                    alt={slide.title}
-                    className="w-full h-full object-cover scale-110"
-                    src={slide.image}
+            <div className="inline-block px-4 py-1 rounded-full border border-outline-variant/30 text-tertiary text-sm tracking-[0.2em] uppercase font-bold">
+              Sacred Digital Artisans
+            </div>
+            <h1 className="text-4xl md:text-[5rem] font-headline font-bold leading-tight tracking-tighter text-on-surface">
+              Where <span className="italic text-primary">Tradition</span> Meets <br className="hidden md:block"/>
+              <span className="bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">Digital Light</span>
+            </h1>
+            <p className="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed max-w-lg mx-auto md:mx-0">
+              Discover a sanctuary of curated clip arts, where ancient aesthetics are reimagined for the luminous age. Each relic is a testament to digital craftsmanship.
+            </p>
+            <div className="flex flex-wrap gap-4 justify-start md:justify-start">
+              <button className="px-8 py-3.5 rounded-full bg-gradient-to-r from-primary to-tertiary text-on-tertiary font-bold text-lg hover:scale-[1.05] transition-all active:scale-95 shadow-[0_0_30px_rgba(255,180,168,0.15)]">
+                Explore Sanctuary
+              </button>
+              <button className="px-8 py-3.5 rounded-full border border-outline-variant/50 text-on-surface font-semibold text-lg hover:bg-surface-bright/40 transition-all">
+                Our Manifesto
+              </button>
+            </div>
+          </motion.div>
+          <div className="flex md:flex justify-end absolute md:relative inset-0 md:inset-auto h-full md:h-[480px] w-full md:max-w-md overflow-hidden md:rounded-[1rem] md:border md:border-outline-variant/20 md:shadow-2xl md:translate-x-20 z-0 md:z-20">
+            <div className="absolute -inset-10 bg-primary-container/20 blur-[100px] rounded-full z-0"></div>
+            
+            <motion.div 
+              className="flex h-full w-full relative z-20"
+              animate={{ x: `-${currentHeroIndex * 100}%` }}
+              transition={{ duration: 1, ease: [0.645, 0.045, 0.355, 1] }}
+            >
+              {heroImages.map((src, i) => (
+                <div key={i} className="min-w-full h-full">
+                  <img 
+                    src={src} 
+                    alt={`Sacred Deity Artwork ${i + 1}`} 
+                    className="w-full h-full object-cover"
                   />
-                </motion.div>
-                
-                {/* Mobile Text Overlay - Inside Slide to change with it */}
-                <div className="md:hidden absolute inset-0 z-20 flex flex-col justify-center px-6 pt-20">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentIndex}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -20 }}
-                      className="space-y-4"
-                    >
-                      <span className="inline-block px-2 py-1 bg-primary text-[8px] font-black tracking-widest text-white uppercase rounded-xs">
-                        {slide.tag}
-                      </span>
-                      <h2 className="text-4xl font-headline font-bold text-white leading-tight drop-shadow-lg">
-                        {slide.title}
-                      </h2>
-                      <p className="text-white/80 text-sm leading-relaxed line-clamp-3">
-                        {slide.description}
-                      </p>
-                      <button className="bg-primary text-white font-black px-8 py-3.5 rounded-lg text-[10px] tracking-widest uppercase">
-                        Explore Now
-                      </button>
-                    </motion.div>
-                  </AnimatePresence>
                 </div>
-              </div>
+              ))}
+            </motion.div>
+            
+            {/* Carousel Indicators */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 md:translate-x-1/2 z-30 flex gap-3">
+              {heroImages.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentHeroIndex(i)}
+                  className={`h-1.5 transition-all duration-500 rounded-full ${currentHeroIndex === i ? 'w-8 bg-tertiary' : 'w-2 bg-white/40'}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products Section */}
+      <section className="py-24 bg-background relative overflow-hidden">
+        <div className="container mx-auto px-8 relative z-10">
+          <div className="text-center mb-16 space-y-4">
+            <motion.span 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-tertiary font-bold tracking-[0.3em] uppercase text-xs"
+            >
+              Curated Collections
+            </motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-6xl font-headline font-bold text-on-surface"
+            >
+              Featured Relics
+            </motion.h2>
+            <motion.div 
+              initial={{ opacity: 0, width: 0 }}
+              whileInView={{ opacity: 1, width: 80 }}
+              viewport={{ once: true }}
+              className="h-1 bg-gradient-to-r from-primary to-tertiary mx-auto rounded-full"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="group relative bg-surface-container-low rounded-2xl overflow-hidden border border-primary/40 shadow-[0_0_25px_rgba(105,0,0,0.35)] transition-all duration-500 hover:shadow-[0_20px_60px_rgba(105,0,0,0.45)] dark:border-tertiary/20 dark:shadow-[0_0_20px_rgba(233,196,0,0.1)] dark:hover:shadow-[0_0_40px_rgba(233,196,0,0.2)]"
+              >
+                {/* Image Placeholder */}
+                <div className="aspect-square bg-surface-container relative overflow-hidden flex items-center justify-center">
+                  <div className="absolute inset-0 radial-sanctuary opacity-40 group-hover:scale-110 transition-transform duration-700"></div>
+                  <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/p6.png')] opacity-10"></div>
+                  <div className="absolute inset-x-0 inset-y-0 flex items-center justify-center">
+                    <Landmark size={48} className="text-primary/20 group-hover:scale-125 transition-transform duration-500 group-hover:text-primary/40" />
+                  </div>
+                  
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-gradient-to-t from-background/90 to-transparent backdrop-blur-sm">
+                    <button className="w-full bg-primary text-on-primary py-2.5 rounded-lg font-bold text-xs tracking-widest uppercase hover:bg-tertiary hover:text-on-tertiary transition-colors">
+                      View Relic
+                    </button>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6 space-y-2">
+                  <div className="flex justify-between items-start">
+                    <span className="text-[9px] uppercase font-bold tracking-widest text-tertiary">Limited Edition</span>
+                    <span className="text-on-surface-variant text-[10px]">Artifact {i}</span>
+                  </div>
+                  <h3 className="text-lg md:text-xl font-headline font-bold text-on-surface group-hover:text-primary transition-colors">
+                    Sacred Ornament
+                  </h3>
+                  <p className="text-on-surface-variant/70 text-xs font-light line-clamp-1">
+                    Hand-crafted digital essence.
+                  </p>
+                  <div className="pt-3 flex items-center justify-between border-t border-outline-variant/10">
+                    <span className="text-primary font-bold text-sm">Coming Soon</span>
+                    <div className="h-1.5 w-1.5 rounded-full bg-tertiary animate-pulse" />
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
-
-          {/* Navigation Arrows (Carousel Only) */}
-          <div className="absolute inset-0 flex items-center justify-between px-6 z-30 pointer-events-none group-hover:opacity-100 opacity-0 transition-opacity">
-            <button
-              onClick={prevSlide}
-              className="p-3 bg-white/5 hover:bg-white/20 backdrop-blur-xl text-white rounded-full transition-all border border-white/10 pointer-events-auto active:scale-95"
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="p-3 bg-white/5 hover:bg-white/20 backdrop-blur-xl text-white rounded-full transition-all border border-white/10 pointer-events-auto active:scale-95"
-            >
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
         </div>
+      </section>
 
-        {/* Right Side: Text & Actions (Desktop Only) */}
-        <div className="hidden md:flex w-full md:w-1/2 md:h-full bg-background items-center px-6 md:px-16 lg:px-24 py-12 md:py-0 relative z-10 border-l border-outline-variant/10">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -30 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-xl w-full"
+      {/* The Luminous Craft Manifesto */}
+      <section className="py-32 bg-surface-container-low relative">
+        <div className="container mx-auto px-8">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="md:col-span-5 aspect-[4/5] rounded-3xl overflow-hidden glass-panel border border-outline-variant/10 shadow-2xl"
             >
-              <div className="inline-block px-3 py-1.5 bg-primary/10 border border-primary/20 text-[10px] font-black uppercase tracking-[0.2em] mb-6 rounded-sm text-primary">
-                {slides[currentIndex].tag}
+              <img 
+                alt="Manifesto visual representation" 
+                className="w-full h-full object-cover mix-blend-luminosity hover:mix-blend-normal transition-all duration-700" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWFXnv-3JqHsVaxbqgXpwLouLy-1EQPshB3VP9rm1BTccdONBBAxhQHlcvtYqjYlIOZXr_4S2dNccgC1enYgJH73tDEu2m8V1d10nudDiKMFxRdZ8i7PRLI1Q5UMqS1t2A3Tdp-xwGLxQnyfmXq46Kzn1zpteROvMw78zXwiRdFR6lU5uKtGlToBgi_L3taHBHeW_FjWuFGkQlrJsnjmEGtrVvyc6EcV2wV2-47_nHGDMvmCo8_CA-gQ6fcKtABgDUnW71WRp3PMQ"
+              />
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="md:col-span-7 space-y-10"
+            >
+              <h2 className="text-4xl md:text-6xl font-headline font-bold leading-tight">The Luminous Craft</h2>
+              <div className="space-y-6 text-lg text-on-surface-variant font-light leading-relaxed">
+                <p>We believe that digital art should not feel sterile. In the Sanctuary, every pixel is infused with the warmth of the artisan's hand. Our clip arts are not mere icons; they are fragments of a larger story, designed to bring a sense of sacred presence to your projects.</p>
+                <p>Our process honors the asymmetry of nature and the precision of the loom. By layering light like gold leaf, we create artifacts that breathe on the screen.</p>
               </div>
-              <h2 className="text-4xl lg:text-7xl font-headline font-bold leading-[0.95] tracking-tighter text-on-surface uppercase mb-8">
-                {slides[currentIndex].title.split(' ')[0]} <br />
-                <span className="text-primary italic font-devotional normal-case tracking-normal block mt-2 text-5xl lg:text-6xl">
-                  {slides[currentIndex].title.split(' ').slice(1).join(' ')}
-                </span>
-              </h2>
-              <p className="text-base lg:text-lg text-on-surface-variant max-w-md font-medium mb-10 leading-relaxed italic border-l-2 border-primary/30 pl-6">
-                {slides[currentIndex].description}
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/products" className="w-full sm:w-auto">
-                  <button className="w-full bg-primary text-white font-black px-12 py-4.5 uppercase tracking-widest text-[10px] hover:bg-white hover:text-primary rounded-xl transition-all duration-500 shadow-2xl active:scale-95 flex items-center justify-center gap-3">
-                    {slides[currentIndex].primaryBtn} <ArrowRight size={18} />
-                  </button>
-                </Link>
-                <Link to="/about" className="w-full sm:w-auto">
-                  <button className="w-full border-2 border-outline-variant/20 text-on-surface font-black px-12 py-4.5 uppercase tracking-widest text-[10px] hover:bg-surface-variant transition-all rounded-xl active:scale-95">
-                    {slides[currentIndex].secondaryBtn}
-                  </button>
-                </Link>
-              </div>
-
-              {/* Progress Indicators */}
-              <div className="hidden md:flex gap-3 mt-16">
-                {slides.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentIndex(i)}
-                    className={`h-1 transition-all duration-300 rounded-full ${currentIndex === i ? 'w-12 bg-primary' : 'w-4 bg-outline-variant/30 hover:bg-outline-variant'}`}
-                  />
-                ))}
+              <div className="grid grid-cols-2 gap-8 pt-8 border-t border-outline-variant/20">
+                <div>
+                  <div className="text-tertiary text-4xl font-bold mb-2">108+</div>
+                  <div className="text-xs uppercase tracking-widest text-outline">Unique Relics</div>
+                </div>
+                <div>
+                  <div className="text-primary text-4xl font-bold mb-2">Artisan</div>
+                  <div className="text-xs uppercase tracking-widest text-outline">Digital Pedigree</div>
+                </div>
               </div>
             </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Mobile Progress Bar */}
-        <div className="md:hidden absolute bottom-0 left-0 right-0 z-40 flex justify-center gap-1.5 px-3 py-4 bg-black/5">
-          {slides.map((_, index) => (
-            <div key={index} className="h-1 flex-1 bg-white/10 rounded-full overflow-hidden">
-              {currentIndex === index && (
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: 5, ease: "linear" }}
-                  className="h-full bg-primary"
-                />
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Scroll Down Button */}
-        <div className="absolute bottom-6 left-1/4 -translate-x-1/2 z-50 hidden md:block">
-          <button
-            onClick={scrollToContent}
-            className="w-10 h-10 bg-background text-on-surface rounded-full flex items-center justify-center hover:scale-110 transition-all shadow-xl border border-outline-variant/10 group/arrow"
-          >
-            <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
-          </button>
-        </div>
-      </section>
-
-      {/* Featured Collections */}
-      <section id="featured-products" className="py-16 md:py-24 px-5 md:px-6 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-16 gap-4">
-          <div>
-            <h2 className="text-3xl md:text-5xl font-headline font-bold text-primary mb-3">Sacred Relics</h2>
-            <p className="text-on-surface-variant max-w-md text-sm md:text-base leading-relaxed">Curated highlights from our luminous archives, designed with devotion.</p>
           </div>
-          <Link to="/products" className="group flex items-center gap-2 text-primary font-bold text-xs md:text-sm tracking-widest uppercase">
-            View All <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
         </div>
       </section>
 
-      {/* Philosophy Section */}
-      <section className="bg-surface-container py-16 md:py-24 px-5 md:px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative order-2 lg:order-1"
-          >
-            <div className="absolute inset-0 bg-primary/10 blur-[60px] md:blur-[100px] rounded-full scale-125" />
-            <img
-              src="https://images.unsplash.com/photo-1590059393333-8994819779df?auto=format&fit=crop&q=80&w=800"
-              alt="Temple Carving"
-              className="rounded-2xl relative z-10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700 aspect-[4/5] object-cover w-full"
-            />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-6 md:space-y-8 order-1 lg:order-2"
-          >
-            <span className="text-secondary font-bold tracking-[0.2em] uppercase text-xs">Our Philosophy</span>
-            <h3 className="text-3xl md:text-5xl font-headline font-bold leading-tight">The Luminous Craft</h3>
-            <p className="text-on-surface-variant text-base md:text-lg leading-relaxed">
-              Every stroke is weighted with history, every curve calculated to reflect the sacred geometry of the temples. We believe digital art and divine creations should breathe with an inner radiance.
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
-              <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                  <Sparkles className="text-primary" size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold mb-1 text-sm md:text-base">Purity of Design</h4>
-                  <p className="text-xs md:text-sm text-on-surface-variant">Uncompromising commitment to cultural accuracy.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center shrink-0">
-                  <ShieldCheck className="text-orange-600" size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold mb-1 text-sm md:text-base">Sacred Quality</h4>
-                  <p className="text-xs md:text-sm text-on-surface-variant">Premium materials and high-fidelity artifacts.</p>
-                </div>
-              </div>
+      {/* Sacred Relics Gallery */}
+      <section className="py-32 relative bg-background">
+        <div className="container mx-auto px-8">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div className="max-w-2xl">
+              <h2 className="text-5xl md:text-6xl font-headline font-bold mb-6">Sacred Relics</h2>
+              <p className="text-on-surface-variant text-lg">Curated highlights from our latest collection, optimized for high-impact editorial and branding projects.</p>
             </div>
-            <Link to="/about" className="inline-block pt-4 w-full sm:w-auto">
-              <Button variant="outline" className="w-full">Learn More About Us</Button>
+            <Link to="/products" className="group flex items-center gap-2 text-tertiary font-bold tracking-widest uppercase text-sm transition-all hover:gap-4">
+              View Full Gallery 
+              <ArrowRight size={18} />
             </Link>
-          </motion.div>
+          </div>
+
+          {/* Bento Grid Gallery */}
+          <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[800px]">
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="md:col-span-2 md:row-span-2 bg-surface-container-high rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl"
+            >
+              <img 
+                alt="Relic 1" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmMM5oJuY5PUCW7ml_rsjOGaMJtd42gRsp19U5ro1lxdL5JX8dC73jjyEmU6d-EB-axqd366kZ_U4lYtE1RxBTYYrJqzXkUcPoIQKuvP90CNpPw244EAOYiCIuwvQOxd6TXGqKMpwNRTb_2A-CH8PSfKBG6v7Oald7uFxazAWGdYStsjyDjj9VEiBvxFKe3-6A-hlQCb2XO1jpfwPBah4k8mE3l7C3bDPiQlQusL3qwJRNTP8eaMffeefvNtKMLJmR4w6QFajYqcI"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+              <div className="absolute bottom-8 left-8">
+                <div className="text-tertiary text-xs tracking-widest uppercase mb-2">Series 01</div>
+                <h3 className="text-3xl font-bold text-white">The Golden Vine</h3>
+              </div>
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              className="bg-surface-container-high rounded-3xl overflow-hidden relative group cursor-pointer shadow-lg"
+            >
+              <img 
+                alt="Relic 2" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDSvoxTOkHgVspxxfaftluUBqICWeuZi7fq-OJbfZTJDCYwAy0O9YIMRf2Bqg6mtK_ffHlNF9gLoAVxYa7c_xpr33f97naRwXNObN6KUdGTdZBasskCCRIGdgV59-ZNQYdp56Yhr33oNCvNP-BQgM2lIGn7_QyutcGZygn_eHXmdw77TwSaMVDuGr5VsswVi5OHRxBz9hVitMTxanItCFaZDRIQK5pMSy28jSAzioEu-EPK2mTc7ILTQBpfYOzYW8O7Cs3wv2vtBQ"
+              />
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors"></div>
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <button className="bg-surface-bright/80 backdrop-blur-md p-4 rounded-full text-on-surface">
+                  <Eye size={24} />
+                </button>
+              </div>
+            </motion.div>
+
+            <motion.div 
+               whileHover={{ scale: 1.02 }}
+               className="md:col-span-1 bg-surface-container-high rounded-3xl overflow-hidden relative group cursor-pointer shadow-lg"
+            >
+              <img 
+                alt="Relic 3" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWe5_xx1xqFGAnPHH09tux91IweXT0qUSPu3UzqteqxU-ZqLIw3G49XDuIixoQAd9sjN2fxy_tGxlw5XKUqSeWtQ-C4GxDiG_FMvf1h6-Wu9AaKIUfZSjPhQk8QqBnvgO1xpFLU9nN1OP2KuSCnzNCKppZ-zTHcYKmLT1WHdQp0zAfsaOErtm7t_qSMglBewhkb3GSlVtwGdapZgWu5c5wa4cPmd6IMOmtUd7PbhhtlXZYOkFb1gawH_SbT7tsgqEwy8Ofu5uA-XE"
+              />
+            </motion.div>
+
+            <motion.div 
+              whileHover={{ y: -10 }}
+              className="md:col-span-2 bg-surface-container-high rounded-3xl overflow-hidden relative group cursor-pointer shadow-xl"
+            >
+              <img 
+                alt="Relic 4" 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCSQ3gBOPrVvddeW3KU-duFj6jYyVtwnvcPgJ_EoHgjdm8gFB8Z_hl5_9SPfVIAfStRQD1eZtH-D78LHJS6PZHl3lwnHcxnpc11SvElEpxJ-MYaC4OLUppD4kJpvgzFDAkkTUUaMZV0wk1mMJtOFH1IvWuhMbDIYP80BMtlDkNwEXXLd0rs3mGxwADvtOuDNmVhslawGNL0CSSUCqervqkioJoBEd-x5WwsVui2rbhAlo9Fjj8hzSfga0BnyOeVVJripM3ZXJlbW0"
+              />
+              <div className="absolute bottom-6 right-6">
+                <span className="bg-primary/20 backdrop-blur-md px-6 py-2 rounded-full text-primary-fixed text-sm border border-primary/30 font-bold uppercase tracking-widest">New Artifact</span>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 md:py-32 px-5 md:px-6 bg-primary overflow-hidden">
+      <section className="py-32 relative overflow-hidden bg-primary border-t border-primary-container">
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/p6.png')]" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <Heart className="text-secondary mx-auto mb-6 md:mb-8 animate-pulse w-10 h-10 md:w-12 md:h-12" />
-          <h2 className="text-3xl md:text-6xl font-headline font-bold text-on-primary mb-6 md:mb-8 leading-tight">
-            Ready to enhance <br className="sm:hidden"/>
-            your divine sanctuary?
-          </h2>
-          <p className="text-on-primary/70 text-base md:text-lg mb-10 md:mb-12">
-            Whether you need custom ornaments or traditional deity wear, our artisans are ready to bring your vision to life.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button variant="secondary" size="lg" className="w-full sm:w-auto">Contact to Order</Button>
-            <Button variant="outline" className="border-on-primary text-on-primary hover:bg-white/10 w-full sm:w-auto" size="lg">View Catalog</Button>
-          </div>
+        <div className="max-w-4xl mx-auto text-center relative z-10 px-8">
+          <motion.div
+             initial={{ opacity: 0, scale: 0.9 }}
+             whileInView={{ opacity: 1, scale: 1 }}
+             viewport={{ once: true }}
+          >
+            <Heart className="text-tertiary mx-auto mb-10 animate-pulse w-16 h-16" />
+            <h2 className="text-5xl md:text-7xl font-headline font-bold text-on-primary mb-8 leading-tight">
+              Ready to enhance <br />
+              your digital sanctuary?
+            </h2>
+            <p className="text-on-primary/80 text-xl mb-12 max-w-2xl mx-auto">
+              Whether you need custom ornaments or traditional deity clip arts, our artisans are ready to bring your vision to life.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-6">
+              <button className="px-12 py-5 rounded-full bg-white text-primary font-bold text-xl hover:scale-105 transition-all shadow-2xl">
+                Contact to Order
+              </button>
+              <button className="px-12 py-5 rounded-full border-2 border-white text-white font-bold text-xl hover:bg-white/10 transition-all">
+                View Catalog
+              </button>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

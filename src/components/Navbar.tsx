@@ -1,77 +1,110 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Sun, Moon } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Sun, Moon, ChevronDown } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
   const location = useLocation();
 
-
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
-      document.documentElement.classList.remove('light');
     } else {
       document.documentElement.classList.remove('dark');
-      document.documentElement.classList.add('light');
     }
   }, [darkMode]);
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Products', path: '/products' },
     { name: 'About', path: '/about' },
+    { name: 'Collections', path: '/products' },
     { name: 'Contact', path: '/contact' },
   ];
 
   return (
-    <nav
-      className="fixed top-0 w-full z-50 bg-white dark:bg-[#2b0604]/70 dark:backdrop-blur-xl py-3 md:py-4 transition-all duration-300 border-b border-outline-variant/10"
-    >
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="flex items-center gap-3 group">
-          <span className="material-symbols-outlined text-primary text-3xl transition-transform group-hover:scale-110">
-            temple_hindu
-          </span>
-          <h1 className="text-2xl md:text-3xl font-devotional text-primary transition-colors group-hover:text-secondary whitespace-nowrap">
-            Shanmugha Clip Arts
-          </h1>
-        </Link>
+    <>
+      {/* Desktop Navbar - Hidden on Mobile */}
+      <div className="hidden md:flex fixed top-8 left-0 right-0 z-50 justify-center px-4">
+        <motion.nav 
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          className="flex items-center gap-2 md:gap-4 px-4 md:px-5 py-1.5 rounded-full bg-[#2b0604]/90 backdrop-blur-3xl border border-white/5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] h-12 md:h-14"
+        >
+          {/* Logo */}
+          <Link to="/" className="hidden md:flex items-center pr-4 border-r border-white/10 h-6 mr-1 group">
+            <span className="glare-text font-black tracking-tighter text-2xl leading-none transition-transform group-hover:scale-110" style={{ fontFamily: "'Noto Serif', serif" }}>S</span>
+          </Link>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`text-sm font-medium tracking-wide transition-colors hover:text-primary ${
-                location.pathname === link.path ? 'text-primary' : 'text-on-surface/70'
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-          <div className="flex items-center gap-4 ml-4">
+          {/* Navigation Links */}
+          <div className="flex items-center h-full relative">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className="relative px-3 md:px-5 h-full flex flex-col items-center justify-center group"
+                >
+                  {/* Active Indicator (Pill Above) */}
+                  <AnimatePresence mode="wait">
+                    {isActive && (
+                      <motion.div 
+                        layoutId="nav-pill"
+                        className="absolute -top-0.5 w-6 h-1 bg-tertiary rounded-full shadow-[0_0_15px_rgba(233,196,0,0.6)] z-20"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </AnimatePresence>
+                  
+                  <span className={`text-xs md:text-sm font-medium transition-colors duration-300 ${isActive ? 'text-tertiary' : 'text-white/70 group-hover:text-tertiary'}`}>
+                    {link.name}
+                  </span>
+                </Link>
+              );
+            })}
+            
+            <div className="flex items-center px-3 md:px-5 opacity-70 hover:opacity-100 cursor-pointer transition-opacity">
+              <span className="text-xs md:text-sm text-white font-medium">More</span>
+              <ChevronDown size={12} className="ml-1 text-white" />
+            </div>
+          </div>
+
+          {/* Action Button & Theme Toggle */}
+          <div className="flex items-center gap-2 md:gap-3 pl-3 border-l border-white/10 h-6">
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-full hover:bg-surface-container transition-colors"
+              className="p-1 rounded-full hover:bg-white/5 transition-colors text-white/70"
             >
-              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+              {darkMode ? <Sun size={16} /> : <Moon size={16} />}
+            </button>
+            
+            <button className="hidden md:block px-5 py-2 rounded-full bg-tertiary/10 hover:bg-tertiary/20 text-tertiary font-bold text-[11px] tracking-wider uppercase transition-all border border-tertiary/20">
+              Book a Call
             </button>
           </div>
-        </div>
-
-        {/* Mobile Utility Actions */}
-        <div className="md:hidden flex items-center gap-2">
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="p-2 rounded-full hover:bg-surface-container transition-colors"
-          >
-            {darkMode ? <Sun size={20} className="text-white" /> : <Moon size={20} className="text-on-surface" />}
-          </button>
-        </div>
+        </motion.nav>
       </div>
-    </nav>
+
+      {/* Mobile Header - Visible only on Mobile */}
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-500 bg-background dark:bg-transparent backdrop-blur-none">
+        <Link to="/" className="flex items-center">
+          <span 
+            className="text-primary-container dark:text-white text-lg font-medium tracking-wide"
+            style={{ fontFamily: "'Noto Serif', serif" }}
+          >
+            Shanmugha Clip Arts
+          </span>
+        </Link>
+        
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          className="p-2 rounded-full bg-surface-container dark:bg-white/5 text-on-surface dark:text-white transition-colors border border-outline-variant/10"
+        >
+          {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+        </button>
+      </div>
+    </>
   );
 };
 

@@ -1,19 +1,20 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, ShoppingBag, User } from 'lucide-react';
+import { Home, ShoppingBag, Info, Briefcase } from 'lucide-react';
 
 const BottomBar: React.FC = () => {
   const location = useLocation();
 
   const navItems = [
-    { name: 'HOME', path: '/', icon: <Home size={22} /> },
-    { name: 'SHOP', path: '/products', icon: <ShoppingBag size={22} /> },
-    { name: 'ACCOUNT', path: '/account', icon: <User size={22} /> },
+    { name: 'HOME', path: '/', icon: <Home size={20} /> },
+    { name: 'PRODUCTS', path: '/products', icon: <ShoppingBag size={20} /> },
+    { name: 'ABOUT', path: '/about', icon: <Info size={20} /> },
+    { name: 'PROJECTS', path: '/projects', icon: <Briefcase size={20} /> },
   ];
 
   return (
     <div className="md:hidden fixed bottom-0 left-0 w-full z-50">
-      <div className="bg-white dark:bg-[#360e09] border-t border-outline-variant/10 flex justify-around items-center pt-3 pb-6 px-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+      <div className="bg-background dark:bg-[#2b0604]/80 backdrop-blur-none dark:backdrop-blur-2xl border-t border-outline-variant/10 flex justify-around items-center py-2 px-4 shadow-[0_-2px_15px_rgba(0,0,0,0.1)]">
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;
           return (

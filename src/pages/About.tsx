@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { CheckCircle, Flower2, Diamond } from 'lucide-react';
 import Button from '../components/Button';
 
 const About: React.FC = () => {
@@ -58,17 +59,17 @@ const About: React.FC = () => {
               {
                 title: "Authenticity",
                 description: "We strictly adhere to traditional iconography and symbolic meanings in every design.",
-                icon: "verified"
+                icon: <CheckCircle size={48} className="text-primary mx-auto mb-4" />
               },
               {
                 title: "Purity",
                 description: "Using only the finest silks, gold threads, and natural materials for our physical products.",
-                icon: "spa"
+                icon: <Flower2 size={48} className="text-primary mx-auto mb-4" />
               },
               {
                 title: "Excellence",
                 description: "High-resolution digital assets and master-crafted physical items that stand the test of time.",
-                icon: "diamond"
+                icon: <Diamond size={48} className="text-primary mx-auto mb-4" />
               }
             ].map((value, i) => (
               <motion.div
@@ -79,7 +80,7 @@ const About: React.FC = () => {
                 transition={{ delay: i * 0.1 }}
                 className="bg-white dark:bg-stone-900 p-8 md:p-10 rounded-2xl shadow-sm text-center space-y-4"
               >
-                <span className="material-symbols-outlined text-primary text-4xl md:text-5xl mb-2 md:mb-4">{value.icon}</span>
+                {value.icon}
                 <h3 className="text-lg md:text-xl font-headline font-bold text-primary">{value.title}</h3>
                 <p className="text-on-surface-variant text-xs md:text-sm leading-relaxed">{value.description}</p>
               </motion.div>
