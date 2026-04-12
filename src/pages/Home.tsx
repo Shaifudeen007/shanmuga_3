@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Heart, Landmark, ArrowRight, Eye } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Heart, Landmark } from 'lucide-react';
 
 const heroImages = [
   '/assets/hero-deity-1.jpg',
@@ -12,14 +11,6 @@ const heroImages = [
 
 const Home: React.FC = () => {
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
-  const containerRef = React.useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
 
   useEffect(() => {
     const timer = setInterval(() => {
