@@ -7,10 +7,16 @@ const About: React.FC = () => {
   return (
     <div className="pt-24 pb-32">
       {/* Hero Section */}
-      <section className="px-5 md:px-6 max-w-7xl mx-auto mb-16 md:mb-24">
+      <motion.section 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="px-5 md:px-6 max-w-7xl mx-auto mb-16 md:mb-24"
+      >
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="text-center max-w-3xl mx-auto"
         >
           <h1 className="text-4xl md:text-7xl font-headline font-bold text-primary mb-6 md:mb-8">Our Sacred Story</h1>
@@ -18,11 +24,23 @@ const About: React.FC = () => {
             Shanmugha Clip Arts was born from a deep devotion to the artisanal heritage of Tamil Nadu, seeking to bring the beauty of divine adornment to the modern world.
           </p>
         </motion.div>
-      </section>
+      </motion.section>
 
       {/* Origin Section */}
-      <section className="px-5 md:px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center mb-24 md:mb-32 overflow-hidden">
-        <div className="space-y-6 md:space-y-8">
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+        className="px-5 md:px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center mb-24 md:mb-32 overflow-hidden"
+      >
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="space-y-6 md:space-y-8"
+        >
           <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary text-center lg:text-left">The Vision</h2>
           <div className="space-y-5 md:space-y-6 text-on-surface-variant leading-relaxed text-sm md:text-base">
             <p>
@@ -35,23 +53,48 @@ const About: React.FC = () => {
               Every design is inspired by Chola-era bronzework, temple architecture, and sacred geometry. We bridge the gap between ancient rituals and contemporary lifestyles.
             </p>
           </div>
-        </div>
-        <div className="relative">
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, x: 30, scale: 0.95 }}
+          whileInView={{ opacity: 1, x: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="relative"
+        >
           <div className="absolute -inset-2 md:-inset-4 bg-primary/5 rounded-3xl -rotate-2" />
           <img
             src="https://images.unsplash.com/photo-1590059393333-8994819779df?auto=format&fit=crop&q=80&w=800"
             alt="Artisan at work"
             className="rounded-2xl shadow-xl relative z-10 aspect-square object-cover w-full"
           />
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* Values Section */}
-      <section className="bg-surface-container py-16 md:py-24">
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+        className="bg-surface-container py-16 md:py-24"
+      >
         <div className="max-w-7xl mx-auto px-5 md:px-6">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary mb-4">The Pillars of Our Craft</h2>
-            <div className="w-16 md:w-24 h-1 bg-secondary mx-auto rounded-full" />
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-headline font-bold text-primary mb-4"
+            >
+              The Pillars of Our Craft
+            </motion.h2>
+            <motion.div 
+              initial={{ width: 0 }}
+              whileInView={{ width: 96 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="h-1 bg-secondary mx-auto rounded-full" 
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
@@ -74,10 +117,11 @@ const About: React.FC = () => {
             ].map((value, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.1 + 0.3, duration: 0.6 }}
+                whileHover={{ y: -10 }}
                 className="bg-white dark:bg-stone-900 p-8 md:p-10 rounded-2xl shadow-sm text-center space-y-4"
               >
                 {value.icon}
@@ -87,17 +131,23 @@ const About: React.FC = () => {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA */}
-      <section className="px-5 md:px-6 max-w-4xl mx-auto mt-24 md:mt-32 text-center">
+      <motion.section 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="px-5 md:px-6 max-w-4xl mx-auto mt-24 md:mt-32 text-center"
+      >
         <h2 className="text-2xl md:text-5xl font-headline font-bold text-primary mb-6 md:mb-8 italic">"Art is the breath of the sanctuary."</h2>
         <p className="text-on-surface-variant text-sm md:text-base mb-10 md:mb-12">Experience the divinity for yourself. Explore our curated collections or request a custom design.</p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Button size="lg" className="w-full sm:w-auto">Shop Now</Button>
-          <Button variant="outline" size="lg" className="w-full sm:w-auto">Contact Us</Button>
+          <Button size="lg" className="w-full sm:w-auto hover:scale-105 transition-transform">Shop Now</Button>
+          <Button variant="outline" size="lg" className="w-full sm:w-auto hover:bg-primary/5">Contact Us</Button>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };

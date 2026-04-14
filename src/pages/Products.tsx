@@ -76,12 +76,17 @@ const Products: React.FC = () => {
   });
 
   return (
-    <div className="pt-28 md:pt-32 pb-24 px-5 md:px-6 max-w-7xl mx-auto">
+    <div className="pt-28 md:pt-32 pb-24 px-5 md:px-6 max-w-7xl mx-auto overflow-hidden">
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-12 md:mb-16">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-12 md:mb-16"
+      >
         <div className="space-y-4">
           <h1 className="text-3xl md:text-5xl font-headline font-bold text-primary">Our Collections</h1>
-          <p className="text-on-surface-variant max-w-md text-sm md:text-base leading-relaxed">Browse our treasury of sacred relics and divine ornaments.</p>
+          <p className="text-on-surface-variant max-w-md text-sm md:text-base leading-relaxed">Browse our treasury of sacred products and divine ornaments.</p>
         </div>
         
         <div className="w-full md:w-auto flex flex-col sm:flex-row gap-4">
@@ -89,7 +94,7 @@ const Products: React.FC = () => {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface/40 group-focus-within:text-primary transition-colors" size={18} />
             <input
               type="text"
-              placeholder="Search relics..."
+              placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="bg-surface-container-low border border-outline-variant/30 rounded-2xl py-3.5 pl-12 pr-6 w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
@@ -100,13 +105,21 @@ const Products: React.FC = () => {
             <span className="text-xs font-bold uppercase tracking-widest">Filter</span>
           </button>
         </div>
-      </div>
+      </motion.div>
 
       {/* Categories - Scrollable on mobile */}
-      <div className="flex overflow-x-auto pb-4 mb-10 gap-2 no-scrollbar -mx-5 px-5 md:mx-0 md:px-0 md:flex-wrap md:overflow-visible">
-        {categories.map((cat) => (
-          <button
+      <motion.div 
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="flex overflow-x-auto pb-4 mb-10 gap-2 no-scrollbar -mx-5 px-5 md:mx-0 md:px-0 md:flex-wrap md:overflow-visible"
+      >
+        {categories.map((cat, i) => (
+          <motion.button
             key={cat}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: i * 0.05 + 0.3 }}
             onClick={() => setActiveCategory(cat)}
             className={`px-6 py-3 rounded-xl text-xs font-bold tracking-widest uppercase transition-all whitespace-nowrap border ${
               activeCategory === cat
@@ -115,23 +128,41 @@ const Products: React.FC = () => {
             }`}
           >
             {cat}
-          </button>
+          </motion.button>
         ))}
-      </div>
+      </motion.div>
 
       {/* Grid */}
       <motion.div
         layout
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
       >
-        {filteredProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        <AnimatePresence mode="popLayout">
+          {filteredProducts.map((product, i) => (
+            <motion.div
+              layout
+              key={product.id}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.4 }}
+            >
+              <ProductCard product={product} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
         {filteredProducts.length === 0 && (
-          <div className="col-span-full py-24 md:py-32 text-center flex flex-col items-center space-y-4 opacity-40">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="col-span-full py-24 md:py-32 text-center flex flex-col items-center space-y-4 opacity-40"
+          >
             <SearchX size={80} strokeWidth={1} />
-            <p className="text-lg md:text-xl font-headline italic">No relics found matching your search.</p>
-          </div>
+            <p className="text-lg md:text-xl font-headline italic">No products found matching your search.</p>
+          </motion.div>
         )}
       </motion.div>
     </div>

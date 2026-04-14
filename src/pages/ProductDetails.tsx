@@ -30,10 +30,16 @@ const ProductDetails: React.FC = () => {
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <div className="pt-28 md:pt-32 pb-24 px-5 md:px-6 max-w-7xl mx-auto">
-      <Link to="/products" className="inline-flex items-center gap-2 text-primary font-bold text-xs tracking-widest uppercase mb-8 md:mb-12 hover:underline">
-        <ChevronLeft size={16} /> Back to Collection
-      </Link>
+    <div className="pt-28 md:pt-32 pb-24 px-5 md:px-6 max-w-7xl mx-auto overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <Link to="/products" className="inline-flex items-center gap-2 text-primary font-bold text-xs tracking-widest uppercase mb-8 md:mb-12 hover:underline">
+          <ChevronLeft size={16} /> Back to Collection
+        </Link>
+      </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
         {/* Gallery */}
@@ -41,6 +47,7 @@ const ProductDetails: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="aspect-square rounded-2xl md:rounded-3xl overflow-hidden border border-outline-variant/10 shadow-xl md:shadow-2xl"
           >
             <img
@@ -49,17 +56,27 @@ const ProductDetails: React.FC = () => {
               className="w-full h-full object-cover transition-all hover:scale-105"
             />
           </motion.div>
-          <div className="grid grid-cols-4 gap-2 md:gap-4 overflow-x-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="grid grid-cols-4 gap-2 md:gap-4 overflow-x-auto"
+          >
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="aspect-square rounded-xl overflow-hidden border border-outline-variant/10 cursor-pointer opacity-60 hover:opacity-100 transition-all shrink-0">
                 <img src={product.image} className="w-full h-full object-cover" />
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* Info */}
-        <div className="space-y-6 md:space-y-8">
+        <motion.div 
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="space-y-6 md:space-y-8"
+        >
           <div className="text-center lg:text-left">
             <span className="text-secondary font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs mb-3 md:mb-4 block">{product.category}</span>
             <h1 className="text-3xl md:text-5xl font-headline font-bold text-primary mb-4">{product.name}</h1>
@@ -77,7 +94,12 @@ const ProductDetails: React.FC = () => {
             {product.description}
           </p>
 
-          <div className="space-y-4 pt-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="space-y-4 pt-4"
+          >
             <h4 className="font-bold text-xs md:text-sm uppercase tracking-widest text-center lg:text-left">Dimensions & Material</h4>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 text-xs md:text-sm text-on-surface-variant">
               <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> Material: Pure Silk & Gold Threads</li>
@@ -85,9 +107,14 @@ const ProductDetails: React.FC = () => {
               <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> Care: Dry Clean Only</li>
               <li className="flex items-center gap-3"><span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" /> Item Type: Hand-crafted</li>
             </ul>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-6 md:pt-8 px-4 sm:px-0">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="flex flex-col sm:flex-row gap-4 md:gap-6 pt-6 md:pt-8 px-4 sm:px-0"
+          >
             <div className="flex items-center justify-between border border-outline-variant/30 rounded-2xl p-1 bg-surface-container-low min-h-[44px]">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -103,16 +130,21 @@ const ProductDetails: React.FC = () => {
                 +
               </button>
             </div>
-            <Button className="flex-1 w-full" size="lg">Add to Sanctuary</Button>
-          </div>
+            <Button className="flex-1 w-full hover:scale-[1.02] active:scale-[0.98] transition-transform" size="lg">Add to Sanctuary</Button>
+          </motion.div>
 
-          <div className="pt-2 px-4 sm:px-0">
-            <button className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-[#25D366]/40 transition-all min-h-[56px] text-sm uppercase tracking-widest">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="pt-2 px-4 sm:px-0"
+          >
+            <button className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-[#25D366]/40 transition-all min-h-[56px] text-sm uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
               <MessageCircle size={20} />
               WhatsApp to Order
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );
