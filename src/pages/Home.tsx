@@ -197,7 +197,7 @@ const Home: React.FC = () => {
         transition={{ duration: 0.8 }}
         className="py-20 bg-surface-container-low/30 relative overflow-hidden"
       >
-        <div className="container mx-auto px-8 relative z-10">
+        <div className="container mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center mb-12 space-y-4">
             <motion.span 
               initial={{ opacity: 0, y: 10 }}
@@ -226,7 +226,7 @@ const Home: React.FC = () => {
             />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-10">
             {[
               { name: 'Traditional Muthangi work', image: '/assets/cat-1.jpg' },
               { name: 'Crown', image: '/assets/cat-2.jpg' },
@@ -241,7 +241,7 @@ const Home: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
                 whileHover={{ y: -8 }}
-                className="group cursor-pointer"
+                className={`group cursor-pointer ${i === 4 ? 'col-span-2 mx-auto w-[calc(50%-0.5rem)] md:col-span-1 md:w-full' : ''}`}
               >
                 <div className="glare-card relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-5 shadow-xl transition-all duration-500 group-hover:shadow-primary/20 border border-outline-variant/10">
                   <img 
@@ -270,7 +270,7 @@ const Home: React.FC = () => {
         transition={{ duration: 0.8 }}
         className="py-24 bg-background relative overflow-hidden"
       >
-        <div className="container mx-auto px-8 relative z-10">
+        <div className="container mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center mb-16 space-y-4">
             <motion.span 
               initial={{ opacity: 0, y: 10 }}
@@ -299,7 +299,7 @@ const Home: React.FC = () => {
             />
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 md:gap-10">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-10">
             {[
               { id: 1, name: 'Sacred Peacock Crown', image: '/assets/p1.jpg' },
               { id: 2, name: 'Pearl Velvet Ornaments', image: '/assets/p2.jpg' },
@@ -313,7 +313,7 @@ const Home: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
                 whileHover={{ y: -10 }}
-                className="group cursor-pointer w-[calc(50%-1.5rem)] md:w-[calc(33.33%-2.5rem)] lg:w-[calc(20%-2.5rem)]"
+                className="group cursor-pointer w-[calc(50%-0.5rem)] md:w-[calc(33.33%-2.5rem)] lg:w-[calc(20%-2.5rem)]"
                 onClick={() => setSelectedImage(product.image)}
               >
                 {/* Product Image Box */}
