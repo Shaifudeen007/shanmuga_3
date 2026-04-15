@@ -32,6 +32,7 @@
   --surface-container: #efeeeb;
   --surface-container-high: #e9e8e5;
   --surface-container-highest: #e3e2e0;
+  --surface-bright: #ffffff;
 }
 
 .dark {
@@ -213,4 +214,54 @@
   z-index: 30;
   transform: skewX(-25deg);
   animation: glare-sweep 4s infinite cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes pulse-glow-maroon {
+  0% { 
+    box-shadow: 0 0 8px rgba(143, 15, 7, 0.2); 
+    border-color: rgba(143, 15, 7, 0.2);
+  }
+  50% { 
+    box-shadow: 0 0 25px rgba(143, 15, 7, 0.5); 
+    border-color: rgba(143, 15, 7, 0.5);
+  }
+  100% { 
+    box-shadow: 0 0 8px rgba(143, 15, 7, 0.2); 
+    border-color: rgba(143, 15, 7, 0.2);
+  }
+}
+
+.glow-maroon-pulse {
+  animation: pulse-glow-maroon 3s infinite ease-in-out;
+}
+
+@keyframes pulse-glow-yellow {
+  0% { 
+    box-shadow: 0 0 20px rgba(233, 196, 0, 0.3); 
+    border-color: rgba(233, 196, 0, 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 60px rgba(233, 196, 0, 0.7), inset 0 0 20px rgba(233, 196, 0, 0.4); 
+    border-color: rgba(233, 196, 0, 1);
+  }
+  100% { 
+    box-shadow: 0 0 20px rgba(233, 196, 0, 0.3); 
+    border-color: rgba(233, 196, 0, 0.4);
+  }
+}
+
+.glow-yellow-pulse {
+  animation: pulse-glow-yellow 3.5s infinite ease-in-out;
+}
+
+.font-script {
+  font-family: 'Great Vibes', cursive;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.hero-dark-bg {
+  background: radial-gradient(circle at 50% 50%, #2b0604 0%, #000000 100%);
 }

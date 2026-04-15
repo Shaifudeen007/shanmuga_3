@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, ChevronDown } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     if (darkMode) {
@@ -18,7 +27,8 @@ const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { name: 'Collections', path: '/products' },
+    { name: 'Products', path: '/products' },
+    { name: 'Projects', path: '/projects' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -64,10 +74,6 @@ const Navbar: React.FC = () => {
               );
             })}
             
-            <div className="flex items-center px-3 md:px-5 opacity-70 hover:opacity-100 cursor-pointer transition-opacity">
-              <span className="text-xs md:text-sm text-white font-medium">More</span>
-              <ChevronDown size={12} className="ml-1 text-white" />
-            </div>
           </div>
 
           {/* Action Button & Theme Toggle */}
@@ -79,21 +85,30 @@ const Navbar: React.FC = () => {
               {darkMode ? <Sun size={16} /> : <Moon size={16} />}
             </button>
             
-            <button className="hidden md:block px-5 py-2 rounded-full bg-tertiary/10 hover:bg-tertiary/20 text-tertiary font-bold text-[11px] tracking-wider uppercase transition-all border border-tertiary/20">
+            <a 
+              href="https://wa.me/919489686435"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:block px-5 py-2 rounded-full bg-tertiary/10 hover:bg-tertiary/20 text-tertiary font-bold text-[11px] tracking-wider uppercase transition-all border border-tertiary/20"
+            >
               Book a Call
-            </button>
+            </a>
           </div>
         </motion.nav>
       </div>
 
       {/* Mobile Header - Visible only on Mobile */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-500 bg-background dark:bg-transparent backdrop-blur-none">
+      <div className={`md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 transition-all duration-500 ${
+        scrolled 
+          ? 'bg-background/80 dark:bg-stone-900/80 backdrop-blur-lg border-b border-outline-variant/5 shadow-lg' 
+          : 'bg-transparent backdrop-blur-none'
+      }`}>
         <Link to="/" className="flex items-center">
           <span 
             className="text-primary-container dark:text-white text-lg font-medium tracking-wide"
             style={{ fontFamily: "'Noto Serif', serif" }}
           >
-            Shanmugha Clip Arts
+            Shanmuga Clip Arts
           </span>
         </Link>
         

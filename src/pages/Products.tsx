@@ -76,16 +76,16 @@ const Products: React.FC = () => {
   });
 
   return (
-    <div className="pt-28 md:pt-32 pb-24 px-5 md:px-6 max-w-7xl mx-auto overflow-hidden">
+    <div className="pt-24 md:pt-28 pb-16 px-5 md:px-6 max-w-7xl mx-auto overflow-hidden">
       {/* Header */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-12 md:mb-16"
+        className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-10 md:mb-12"
       >
         <div className="space-y-4">
-          <h1 className="text-3xl md:text-5xl font-headline font-bold text-primary">Our Collections</h1>
+          <h1 className="text-3xl md:text-5xl font-headline font-bold text-primary">Our Products</h1>
           <p className="text-on-surface-variant max-w-md text-sm md:text-base leading-relaxed">Browse our treasury of sacred products and divine ornaments.</p>
         </div>
         

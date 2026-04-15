@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BottomBar from './components/BottomBar';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 import Home from './pages/Home';
 import About from './pages/About';
 import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetails';
 import Contact from './pages/Contact';
+import Projects from './pages/Projects';
 
 // Scroll to top on every route change
 const ScrollToTop = () => {
@@ -30,11 +32,13 @@ const App: React.FC = () => {
             <Route path="/about" element={<About />} />
             <Route path="/products" element={<Products />} />
             <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
         <Footer />
         <BottomBar />
+        <FloatingWhatsApp />
       </div>
     </Router>
   );

@@ -30,13 +30,13 @@ const ProductDetails: React.FC = () => {
   const [quantity, setQuantity] = useState(1);
 
   return (
-    <div className="pt-28 md:pt-32 pb-24 px-5 md:px-6 max-w-7xl mx-auto overflow-hidden">
+    <div className="pt-24 md:pt-28 pb-16 px-5 md:px-6 max-w-7xl mx-auto overflow-hidden">
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <Link to="/products" className="inline-flex items-center gap-2 text-primary font-bold text-xs tracking-widest uppercase mb-8 md:mb-12 hover:underline">
+        <Link to="/products" className="inline-flex items-center gap-2 text-primary font-bold text-xs tracking-widest uppercase mb-6 md:mb-10 hover:underline">
           <ChevronLeft size={16} /> Back to Collection
         </Link>
       </motion.div>
@@ -79,7 +79,7 @@ const ProductDetails: React.FC = () => {
         >
           <div className="text-center lg:text-left">
             <span className="text-secondary font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs mb-3 md:mb-4 block">{product.category}</span>
-            <h1 className="text-3xl md:text-5xl font-headline font-bold text-primary mb-4">{product.name}</h1>
+            <h1 className="text-3xl md:text-5xl font-headline font-bold text-primary dark:text-white mb-4">{product.name}</h1>
             <div className="flex items-center justify-center lg:justify-start gap-4">
               <div className="flex text-amber-500">
                 {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={14} fill="currentColor" />)}

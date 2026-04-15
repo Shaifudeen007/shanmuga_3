@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useInView, animate } from 'framer-motion';
-import { X, Award, ShieldCheck, Sparkles, IndianRupee, Clock, Factory, Globe, ThumbsUp, Star, MessageCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { X, Award, ShieldCheck, Sparkles, IndianRupee, Clock, Factory, Globe, ThumbsUp, Star, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import CountingNumber from '../components/CountingNumber';
 
 const heroImages = [
   '/assets/hero-new-1.jpg',
@@ -9,30 +11,62 @@ const heroImages = [
   '/assets/hero-new-4.jpg',
 ];
 
-const CountingNumber: React.FC<{ value: number }> = ({ value }) => {
-  const countRef = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(countRef, { margin: "-50px" });
+const productCategories = [
+  { name: 'Traditional Muthangi work', image: '/assets/cat-1.jpg' },
+  { name: 'Crown', image: '/assets/cat-2.jpg' },
+  { name: 'Rathana Kavasam', image: '/assets/cat-3.jpg' },
+  { name: 'Rajaalangaram', image: '/assets/cat-4.jpg' },
+  { name: 'Velvet Stone work', image: '/assets/cat-5.png' },
+];
 
-  useEffect(() => {
-    if (isInView) {
-      const controls = animate(0, value, {
-        duration: 2,
-        ease: "easeOut",
-        onUpdate: (latest) => {
-          if (countRef.current) countRef.current.textContent = Math.round(latest).toLocaleString();
-        }
-      });
-      return () => controls.stop();
-    }
-  }, [isInView, value]);
+const featuredProducts = [
+  { id: 1, name: 'Sacred Peacock Crown', image: '/assets/p1.jpg' },
+  { id: 2, name: 'Pearl Velvet Ornaments', image: '/assets/p2.jpg' },
+  { id: 3, name: 'Divine Gold Kavacham', image: '/assets/p3.jpg' },
+  { id: 4, name: 'Royal Velvet Alankaram', image: '/assets/p4.jpg' }
+];
 
-  return <span ref={countRef}>0</span>;
-};
 
 const Home: React.FC = () => {
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [modalData, setModalData] = useState<{ images: string[], index: number } | null>(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+
+  const openModal = (images: string[], index: number) => {
+    setModalData({ images, index });
+  };
+
+  const nextImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (modalData) {
+      setModalData({
+        ...modalData,
+        index: (modalData.index + 1) % modalData.images.length
+      });
+    }
+  };
+
+  const prevImage = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (modalData) {
+      setModalData({
+        ...modalData,
+        index: (modalData.index - 1 + modalData.images.length) % modalData.images.length
+      });
+    }
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!modalData) return;
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'Escape') setModalData(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [modalData]);
 
   const testimonials = [
     {
@@ -127,65 +161,123 @@ const Home: React.FC = () => {
   return (
     <div className="overflow-hidden bg-background">
       {/* Hero Section */}
-      <section className="relative h-[calc(100dvh-40px)] md:h-auto md:min-h-[90vh] flex items-center justify-center overflow-hidden pt-0 md:pt-24 pb-12 mt-0 md:mt-0">
-        <div className="absolute inset-0 radial-sanctuary opacity-60"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background to-background"></div>
-        <div className="container mx-auto px-10 md:px-28 grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10 h-full">
+      <section className="relative min-h-[calc(100dvh-40px)] md:h-auto md:min-h-[80vh] flex items-center justify-center overflow-x-hidden pt-8 md:pt-24 pb-8 md:pb-16 mt-0 md:mt-0">
+        <div className="absolute inset-0 radial-sanctuary dark:hero-dark-bg opacity-30 dark:opacity-100"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background dark:via-transparent dark:to-background/80"></div>
+        <div className="container mx-auto px-6 md:px-12 lg:px-24 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-20 items-center relative z-10 h-full">
+          {/* Image carousel first on mobile */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="flex items-center justify-center relative h-[450px] md:h-[600px] w-full max-w-2xl perspective-1000 z-10 mx-auto md:ml-auto md:mr-0 order-1 md:order-2 -mt-2 md:mt-0"
+          >
+            <div className="relative w-full h-full flex items-center justify-center">
+              {heroImages.map((src, i) => {
+                const diff = (i - currentHeroIndex + heroImages.length) % heroImages.length;
+                let position: 'center' | 'left' | 'right' | 'hidden' = 'hidden';
+                
+                if (diff === 0) position = 'center';
+                else if (diff === 1) position = 'right';
+                else if (diff === heroImages.length - 1) position = 'left';
+
+                const variants = {
+                  center: { 
+                    x: 0, 
+                    scale: 1, 
+                    zIndex: 30, 
+                    opacity: 1, 
+                    rotateY: 0,
+                    filter: 'blur(0px) brightness(1)'
+                  },
+                  left: { 
+                    x: '-35%', 
+                    scale: 0.8, 
+                    zIndex: 20, 
+                    opacity: 0.5, 
+                    rotateY: 25,
+                    filter: 'blur(2px) brightness(0.7)'
+                  },
+                  right: { 
+                    x: '35%', 
+                    scale: 0.8, 
+                    zIndex: 20, 
+                    opacity: 0.5, 
+                    rotateY: -25,
+                    filter: 'blur(2px) brightness(0.7)'
+                  },
+                  hidden: { 
+                    x: 0, 
+                    scale: 0.5, 
+                    zIndex: 10, 
+                    opacity: 0, 
+                    rotateY: 0,
+                    filter: 'blur(10px) brightness(0)'
+                  }
+                };
+
+                return (
+                  <motion.div
+                    key={i}
+                    animate={position}
+                    variants={variants}
+                    transition={{ 
+                      duration: 0.8, 
+                      ease: [0.4, 0, 0.2, 1] 
+                    }}
+                    className="absolute w-[260px] h-[360px] md:w-[400px] md:h-[560px] rounded-[3rem] overflow-hidden border-2 border-tertiary/30 shadow-[0_30px_70px_rgba(0,0,0,0.6)] bg-surface-container-low"
+                  >
+                    <img 
+                      src={src} 
+                      className="w-full h-full object-cover select-none" 
+                      alt={`Sacred Artwork ${i + 1}`} 
+                      draggable={false}
+                    />
+                    
+                    {/* Inner highlight for premium feel */}
+                    <div className="absolute inset-0 border border-white/10 rounded-[2.5rem] pointer-events-none" />
+                    
+                    {/* Bottom pulse glow for center image */}
+                    {position === 'center' && (
+                      <motion.div 
+                        animate={{ opacity: [0.2, 0.5, 0.2] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                        className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-tertiary/40 to-transparent pointer-events-none"
+                      />
+                    )}
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* Content second on mobile */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex md:block flex-col space-y-4 md:space-y-5 max-w-2xl absolute md:relative z-30 bottom-32 left-6 right-6 md:inset-auto p-0 md:pl-12 text-left md:text-left shadow-none"
+            className="flex md:block flex-col space-y-4 md:space-y-6 max-w-2xl relative z-30 p-0 md:pl-0 text-left md:text-left shadow-none md:translate-x-48 order-2 md:order-1 -mt-6 md:mt-0 mb-20 md:mb-0"
           >
-            <div className="inline-block px-4 py-1 rounded-full border border-outline-variant/30 text-tertiary text-sm tracking-[0.2em] uppercase font-bold">
-              Sacred Digital Artisans
-            </div>
-            <h1 className="text-4xl md:text-[5rem] font-headline font-bold leading-tight tracking-tighter text-on-surface">
-              Where <span className="italic text-primary">Tradition</span> Meets <br className="hidden md:block"/>
-              <span className="bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">Digital Light</span>
+            <h1 className="text-4xl md:text-[5rem] font-serif-title font-bold leading-tight tracking-tighter text-on-surface">
+              Bringing Tradition <br />
+              into a <span className="bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">new era</span>
             </h1>
             <p className="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed max-w-lg mx-auto md:mx-0">
-              Discover a sanctuary of curated clip arts, where ancient aesthetics are reimagined for the luminous age. Each product is a testament to digital craftsmanship.
+              Crafting divine attire for Hindu deities with modern precision and timeless devotion. Experience the elegance of Antique Gold Kunthan work with premium quality materials.
             </p>
-            <div className="flex flex-wrap gap-4 justify-start md:justify-start">
-              <button className="px-8 py-3.5 rounded-full bg-gradient-to-r from-primary to-tertiary text-on-tertiary font-bold text-lg hover:scale-[1.05] transition-all active:scale-95 shadow-[0_0_30px_rgba(255,180,168,0.15)]">
-                Explore Sanctuary
-              </button>
-              <button className="px-8 py-3.5 rounded-full border border-outline-variant/50 text-on-surface font-semibold text-lg hover:bg-surface-bright/40 transition-all">
-                Our Manifesto
-              </button>
+            <div className="flex gap-4 justify-start md:justify-start">
+              <Link to="/products" className="flex-1 max-w-[200px] md:max-w-none md:flex-none">
+                <button className="w-full px-4 md:px-8 py-3.5 rounded-full bg-gradient-to-r from-primary to-tertiary text-on-tertiary font-bold text-base md:text-lg hover:scale-[1.05] transition-all active:scale-95 shadow-[0_0_30px_rgba(255,180,168,0.15)] cursor-pointer whitespace-nowrap">
+                  Explore Products
+                </button>
+              </Link>
+              <Link to="/about" className="flex-1 max-w-[200px] md:max-w-none md:flex-none">
+                <button className="w-full px-4 md:px-8 py-3.5 rounded-full border-2 border-primary/20 dark:border-outline-variant/30 text-primary dark:text-on-surface font-bold text-base md:text-lg hover:bg-primary/5 dark:hover:bg-surface-bright/40 transition-all cursor-pointer shadow-sm whitespace-nowrap">
+                  About Us
+                </button>
+              </Link>
             </div>
           </motion.div>
-          <div className="flex md:flex justify-end absolute md:relative inset-0 md:inset-auto h-full md:h-[480px] w-full md:max-w-md overflow-hidden md:rounded-[1rem] md:border md:border-outline-variant/20 md:shadow-2xl md:translate-x-20 z-0 md:z-20">
-            <div className="absolute -inset-10 bg-primary-container/20 blur-[100px] rounded-full z-0"></div>
-            
-            <motion.div 
-              className="flex h-full w-full relative z-20"
-              animate={{ x: `-${currentHeroIndex * 100}%` }}
-              transition={{ duration: 1, ease: [0.645, 0.045, 0.355, 1] }}
-            >
-              {heroImages.map((src, i) => (
-                <div key={i} className="min-w-full h-full">
-                  <img 
-                    src={src} 
-                    alt={`Sacred Deity Artwork ${i + 1}`} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
-            </motion.div>
-            
-            {/* Carousel Indicators */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 md:translate-x-1/2 z-30 flex gap-3">
-              {heroImages.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentHeroIndex(i)}
-                  className={`h-1.5 transition-all duration-500 rounded-full ${currentHeroIndex === i ? 'w-8 bg-tertiary' : 'w-2 bg-white/40'}`}
-                />
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
@@ -195,10 +287,10 @@ const Home: React.FC = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8 }}
-        className="py-20 bg-surface-container-low/30 relative overflow-hidden"
+        className="py-8 md:py-16 bg-surface-container-low/40 backdrop-blur-xl relative overflow-hidden"
       >
         <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <div className="text-center mb-12 space-y-4">
+          <div className="text-center mb-8 md:mb-10 space-y-4">
             <motion.span 
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -227,13 +319,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-10">
-            {[
-              { name: 'Traditional Muthangi work', image: '/assets/cat-1.jpg' },
-              { name: 'Crown', image: '/assets/cat-2.jpg' },
-              { name: 'Rathana Kavasam', image: '/assets/cat-3.jpg' },
-              { name: 'Rajaalangaram', image: '/assets/cat-4.jpg' },
-              { name: 'Velvet Stone work', image: '/assets/cat-5.png' },
-            ].map((cat, i) => (
+            {productCategories.map((cat, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
@@ -242,20 +328,33 @@ const Home: React.FC = () => {
                 transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
                 whileHover={{ y: -8 }}
                 className={`group cursor-pointer ${i === 4 ? 'col-span-2 mx-auto w-[calc(50%-0.5rem)] md:col-span-1 md:w-full' : ''}`}
+                onClick={() => openModal(productCategories.map(c => c.image), i)}
               >
-                <div className="glare-card relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-5 shadow-xl transition-all duration-500 group-hover:shadow-primary/20 border border-outline-variant/10">
-                  <img 
-                    src={cat.image} 
-                    alt={cat.name} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                <div className="relative group">
+                  {/* Background Pulse Glow Layer */}
+                  <motion.div 
+                    animate={{ 
+                      opacity: [0.1, 0.4, 0.1],
+                      scale: [0.9, 1.1, 0.9]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute -inset-4 bg-primary/20 blur-[30px] rounded-full pointer-events-none z-0 dark:hidden"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
-                    <span className="text-primary font-bold text-xs tracking-widest uppercase">Explore Category</span>
+                  
+                  <div className="glare-card relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-5 shadow-xl transition-all duration-500 group-hover:shadow-primary/20 border border-primary/20 dark:border-outline-variant/10 glow-maroon-pulse dark:[animation:none] dark:shadow-none backdrop-blur-md bg-surface-container-low/40 z-10">
+                    <img 
+                      src={cat.image} 
+                      alt={cat.name} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
+                      <span className="text-primary font-bold text-xs tracking-widest uppercase">Explore Category</span>
+                    </div>
                   </div>
+                  <h3 className="text-center font-headline font-bold text-sm md:text-base text-on-surface-variant dark:text-white group-hover:text-primary transition-colors leading-tight">
+                    {cat.name}
+                  </h3>
                 </div>
-                <h3 className="text-center font-headline font-bold text-sm md:text-base text-on-surface-variant group-hover:text-primary transition-colors leading-tight">
-                  {cat.name}
-                </h3>
               </motion.div>
             ))}
           </div>
@@ -268,10 +367,10 @@ const Home: React.FC = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8 }}
-        className="py-24 bg-background relative overflow-hidden"
+        className="py-10 md:py-20 bg-surface-container-low/20 backdrop-blur-xl relative overflow-hidden"
       >
         <div className="container mx-auto px-4 md:px-8 relative z-10">
-          <div className="text-center mb-16 space-y-4">
+          <div className="text-center mb-12 md:mb-14 space-y-4">
             <motion.span 
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -279,7 +378,7 @@ const Home: React.FC = () => {
               transition={{ delay: 0.1 }}
               className="text-primary font-bold tracking-[0.3em] uppercase text-xs"
             >
-              Curated Collections
+              Curated Products
             </motion.span>
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
@@ -300,12 +399,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap justify-center gap-4 md:gap-10">
-            {[
-              { id: 1, name: 'Sacred Peacock Crown', image: '/assets/p1.jpg' },
-              { id: 2, name: 'Pearl Velvet Ornaments', image: '/assets/p2.jpg' },
-              { id: 3, name: 'Divine Gold Kavacham', image: '/assets/p3.jpg' },
-              { id: 4, name: 'Royal Velvet Alankaram', image: '/assets/p4.jpg' }
-            ].map((product, i) => (
+            {featuredProducts.map((product, i) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -314,21 +408,33 @@ const Home: React.FC = () => {
                 transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
                 whileHover={{ y: -10 }}
                 className="group cursor-pointer w-[calc(50%-0.5rem)] md:w-[calc(33.33%-2.5rem)] lg:w-[calc(20%-2.5rem)]"
-                onClick={() => setSelectedImage(product.image)}
+                onClick={() => openModal(featuredProducts.map(p => p.image), i)}
               >
-                {/* Product Image Box */}
-                <div className="glare-card relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-5 shadow-xl transition-all duration-500 group-hover:shadow-primary/20 border border-outline-variant/10">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                <div className="relative group">
+                  {/* Background Pulse Glow Layer */}
+                  <motion.div 
+                    animate={{ 
+                      opacity: [0.1, 0.4, 0.1],
+                      scale: [0.9, 1.1, 0.9]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute -inset-4 bg-primary/20 blur-[30px] rounded-full pointer-events-none z-0 dark:hidden"
                   />
                   
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
-                    <button className="bg-primary text-on-primary px-4 py-2 rounded-lg font-bold text-[10px] tracking-widest uppercase hover:bg-tertiary hover:text-on-tertiary transition-colors shadow-lg">
-                      View Product
-                    </button>
+                  {/* Product Image Box */}
+                  <div className="glare-card relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-5 shadow-xl transition-all duration-500 group-hover:shadow-primary/20 border border-primary/20 dark:border-outline-variant/10 glow-maroon-pulse dark:[animation:none] dark:shadow-none backdrop-blur-md bg-surface-container-low/40 z-10">
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                    />
+                    
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
+                      <button className="bg-primary text-on-primary px-4 py-2 rounded-lg font-bold text-[10px] tracking-widest uppercase hover:bg-tertiary hover:text-on-tertiary transition-colors shadow-lg">
+                        View Product
+                      </button>
+                    </div>
                   </div>
                 </div>
 
@@ -338,7 +444,7 @@ const Home: React.FC = () => {
                     <span className="text-[9px] uppercase font-bold tracking-widest text-tertiary">Limited</span>
                     <span className="text-on-surface-variant text-[8px]">Artifact {product.id}</span>
                   </div>
-                  <h3 className="text-sm md:text-base font-headline font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-1">
+                  <h3 className="text-sm md:text-base font-headline font-bold text-on-surface dark:text-white group-hover:text-primary transition-colors line-clamp-1">
                     {product.name}
                   </h3>
                   <p className="text-on-surface-variant/70 text-[10px] font-light">
@@ -357,9 +463,9 @@ const Home: React.FC = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8 }}
-        className="py-24 bg-surface-container-low/30 relative overflow-hidden border-y border-outline-variant/10 dark:border-none"
+        className="py-10 md:py-20 bg-surface-container-low/30 relative overflow-hidden border-y border-outline-variant/10 dark:border-none"
       >
-        <div className="container mx-auto px-8 relative z-10 mb-16">
+        <div className="container mx-auto px-8 relative z-10 mb-12">
           <div className="text-center space-y-4">
             <motion.span 
               initial={{ opacity: 0, y: 10 }}
@@ -442,10 +548,10 @@ const Home: React.FC = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8 }}
-        className="py-32 bg-surface-container-low/50 relative overflow-hidden"
+        className="py-10 md:py-24 bg-surface-container-low/50 relative overflow-hidden"
       >
         <div className="container mx-auto px-8 relative z-10">
-          <div className="text-center mb-20 space-y-4">
+          <div className="text-center mb-12 md:mb-16 space-y-4">
             <motion.span 
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -475,11 +581,7 @@ const Home: React.FC = () => {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
                 >
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs transition-colors ${
-                    activeTestimonial === i ? 'bg-white text-primary' : 'bg-primary/10 text-primary'
-                  }`}>
-                    {t.name.charAt(0)}
-                  </div>
+
                   <div>
                     <h4 className={`font-headline font-bold text-sm transition-colors ${
                       activeTestimonial === i ? 'text-white' : 'text-on-surface'
@@ -514,7 +616,7 @@ const Home: React.FC = () => {
                   animate={{ opacity: 1, x: 0, scale: 1 }}
                   exit={{ opacity: 0, x: -40, scale: 0.95 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="relative z-10 w-full bg-white dark:bg-stone-900/40 backdrop-blur-md p-6 md:p-10 rounded-3xl border-none shadow-2xl"
+                  className="relative z-10 w-full bg-stone-900 dark:bg-stone-900/80 backdrop-blur-md p-6 md:p-10 rounded-3xl border border-white/10 shadow-2xl"
                 >
                   <Star className="text-tertiary mb-4 w-8 h-8 fill-tertiary/20" strokeWidth={1} />
                   
@@ -524,16 +626,14 @@ const Home: React.FC = () => {
                     ))}
                   </div>
                   
-                  <blockquote className="text-lg md:text-2xl font-headline italic font-bold text-primary leading-tight mb-6">
+                  <blockquote className="text-lg md:text-2xl font-headline italic font-bold text-white leading-tight mb-6">
                     "{testimonials[activeTestimonial].content}"
                   </blockquote>
                   
                   <div className="flex items-center gap-4 pt-6 border-t border-outline-variant/10">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary text-lg font-bold border-2 border-primary/20">
-                      {testimonials[activeTestimonial].name.charAt(0)}
-                    </div>
+
                     <div>
-                      <h3 className="text-xl font-headline font-bold text-on-surface">
+                      <h3 className="text-xl font-headline font-bold text-white">
                         {testimonials[activeTestimonial].name}
                       </h3>
                       <p className="text-xs uppercase tracking-[0.2em] text-primary font-bold">
@@ -552,23 +652,10 @@ const Home: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5 }}
-            className="mt-32 pt-16 border-t border-primary/5 text-center"
+            className="mt-16 md:mt-24 pt-12 border-t border-primary/5 text-center"
           >
             <div className="flex flex-col items-center gap-6">
-              <div className="flex -space-x-4 mb-4">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <div key={i} className="w-14 h-14 rounded-full border-4 border-background bg-surface-container flex items-center justify-center overflow-hidden">
-                    <img 
-                      src={`https://i.pravatar.cc/100?img=${i + 10}`} 
-                      alt="Customer" 
-                      className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                    />
-                  </div>
-                ))}
-                <div className="w-14 h-14 rounded-full border-4 border-background bg-primary flex items-center justify-center text-white text-xs font-bold shadow-lg shadow-primary/30">
-                  +1k
-                </div>
-              </div>
+
               <h3 className="text-3xl md:text-5xl font-headline font-bold text-on-surface">
                 <span className="text-primary font-black"><CountingNumber value={1000} />+</span> Happy Customers Worldwide
               </h3>
@@ -586,7 +673,7 @@ const Home: React.FC = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="py-20 relative overflow-hidden bg-primary border-t border-primary-container"
+        className="py-8 md:py-16 relative overflow-hidden bg-primary border-t border-primary-container"
       >
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/p6.png')]" />
         <div className="max-w-4xl mx-auto text-center relative z-10 px-8">
@@ -609,14 +696,17 @@ const Home: React.FC = () => {
               Stay updated on new designs and traditional artistry previews.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <motion.button 
+              <motion.a 
+                href="https://wa.me/919489686435"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-full bg-[#25D366] text-white font-bold text-base transition-all shadow-2xl flex items-center justify-center gap-3 mx-auto sm:mx-0"
+                className="px-8 py-4 rounded-full bg-[#25D366] text-white font-bold text-base transition-all shadow-2xl flex items-center justify-center gap-3 mx-auto sm:mx-0 cursor-pointer"
               >
                 <MessageCircle size={20} />
                 Join WhatsApp Group
-              </motion.button>
+              </motion.a>
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -630,31 +720,68 @@ const Home: React.FC = () => {
       </motion.section>
       {/* Image Modal/Popup */}
       <AnimatePresence>
-        {selectedImage && (
+        {modalData && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/95 backdrop-blur-xl cursor-zoom-out"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 bg-black/40 backdrop-blur-3xl"
           >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative max-w-5xl w-full h-full flex items-center justify-center"
-              onClick={(e) => e.stopPropagation()}
+            {/* Close Button - Premium Glassmorphic Design */}
+            <motion.button 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              onClick={() => setModalData(null)}
+              className="fixed top-6 right-6 md:top-12 md:right-12 z-[110] w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-white/10 hover:bg-primary text-white rounded-full transition-all backdrop-blur-xl border border-white/20 shadow-2xl group cursor-pointer"
+              aria-label="Close"
             >
+              <X size={24} className="md:w-7 md:h-7 group-hover:rotate-90 transition-transform duration-300" />
+            </motion.button>
+
+            {/* Navigation Buttons for Carousel */}
+            <div className="fixed inset-y-0 left-4 md:left-12 flex items-center z-[105]">
               <button 
-                onClick={() => setSelectedImage(null)}
-                className="absolute -top-12 -right-0 md:-right-12 text-white hover:text-primary transition-colors cursor-pointer p-2"
+                onClick={prevImage}
+                className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white rounded-full transition-all backdrop-blur-md border border-white/10 group active:scale-90"
               >
-                <X size={32} />
+                <ChevronLeft size={32} className="group-hover:-translate-x-1 transition-transform" />
               </button>
+            </div>
+
+            <div className="fixed inset-y-0 right-4 md:right-12 flex items-center z-[105]">
+              <button 
+                onClick={nextImage}
+                className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white rounded-full transition-all backdrop-blur-md border border-white/10 group active:scale-90"
+              >
+                <ChevronRight size={32} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+
+            {/* Pagination Indicator */}
+            <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[105] flex gap-2">
+              {modalData.images.map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`h-1.5 transition-all duration-500 rounded-full ${modalData.index === i ? 'w-8 bg-primary' : 'w-2 bg-white/30'}`}
+                />
+              ))}
+            </div>
+
+            <motion.div
+              key={modalData.index}
+              initial={{ scale: 0.9, opacity: 0, x: 20 }}
+              animate={{ scale: 1, opacity: 1, x: 0 }}
+              exit={{ scale: 0.9, opacity: 0, x: -20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="relative max-w-5xl w-full h-full flex items-center justify-center cursor-zoom-out"
+              onClick={() => setModalData(null)}
+            >
               <img 
-                src={selectedImage} 
+                src={modalData.images[modalData.index]} 
                 alt="Product Full View" 
-                className="max-w-full max-h-full object-contain rounded-xl shadow-2xl shadow-primary/20"
+                className="max-w-full max-h-[80vh] md:max-h-[85vh] object-contain rounded-[1.5rem] shadow-[0_0_80px_rgba(255,180,168,0.15)] border border-white/5"
+                onClick={(e) => e.stopPropagation()}
               />
             </motion.div>
           </motion.div>

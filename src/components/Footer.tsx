@@ -11,7 +11,7 @@ import {
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-[#faf9f6] dark:bg-[#fffdf5] border-t-2 border-[#8f0f07]/10 pt-12 pb-8 transition-colors duration-500">
+    <footer className="w-full bg-[#faf9f6] dark:bg-[#fffdf5] border-t-2 border-[#8f0f07]/10 pt-12 pb-24 md:pb-8 transition-colors duration-500">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           
@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
                 <span className="text-white font-serif-title font-black text-3xl">S</span>
               </div>
               <div className="flex flex-col items-center lg:items-start">
-                <h2 className="text-[#8f0f07] font-headline text-3xl font-bold tracking-tight leading-none">Shanmugha</h2>
+                <h2 className="text-[#8f0f07] font-headline text-3xl font-bold tracking-tight leading-none">Shanmuga</h2>
                 <span className="text-[#8f0f07] text-[11px] uppercase tracking-[0.3em] font-bold mt-2">Clip Arts</span>
               </div>
             </Link>
@@ -30,13 +30,19 @@ const Footer: React.FC = () => {
               "Weaving divinity into every thread, crafting legends in every ornament. Preserving Bharat's sacred traditions with timeless elegance."
             </p>
             <div className="flex justify-center lg:justify-start gap-4">
-              {[Instagram, Facebook, Share2].map((Icon, i) => (
+              {[
+                { Icon: Instagram, link: "https://www.instagram.com/reel/DWrHc_Rkh0z/?igsh=YnN1ajBtM25ramdj" },
+                { Icon: Facebook, link: "https://www.facebook.com/share/18GERuQyQv/" },
+                { Icon: Share2, link: "https://shanmugacliparts.com" }
+              ].map((social, i) => (
                 <a 
                   key={i} 
-                  href="#" 
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-[#8f0f07]/5 border border-[#8f0f07] flex items-center justify-center text-[#8f0f07] hover:bg-[#8f0f07] hover:text-white hover:border-[#8f0f07] hover:-translate-y-1 transition-all duration-300"
                 >
-                  <Icon size={18} />
+                  <social.Icon size={18} />
                 </a>
               ))}
             </div>
@@ -134,7 +140,7 @@ const Footer: React.FC = () => {
         {/* Footer Bottom */}
         <div className="mt-12 pt-6 border-t border-[#8f0f07]/20 flex justify-center items-center text-center">
           <p className="text-[#8f0f07] text-[10px] uppercase tracking-[0.2em] font-medium font-bold">
-            © 2026 Shanmugha Clip Arts. All rights reserved.
+            © 2026 Shanmuga Clip Arts. All rights reserved.
           </p>
         </div>
       </div>

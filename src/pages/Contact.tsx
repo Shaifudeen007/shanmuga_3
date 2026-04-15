@@ -5,13 +5,13 @@ import { Mail, Phone, MapPin, MessageCircle, Send } from 'lucide-react';
 
 const Contact: React.FC = () => {
   return (
-    <div className="pt-24 pb-32">
+    <div className="pt-20 pb-20">
       {/* Header */}
       <motion.section 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="px-5 md:px-6 max-w-7xl mx-auto mb-16 md:mb-24 text-center"
+        className="px-5 md:px-6 max-w-7xl mx-auto mb-12 md:mb-16 text-center"
       >
         <h1 className="text-3xl md:text-6xl font-headline font-bold text-primary mb-6 md:mb-8">Connect With Us</h1>
         <p className="text-on-surface-variant max-w-2xl mx-auto leading-relaxed text-sm md:text-lg px-4">
