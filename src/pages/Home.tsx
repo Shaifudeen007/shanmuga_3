@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView, animate } from 'framer-motion';
-import { Heart, X, Award, ShieldCheck, Sparkles, IndianRupee, Clock, Factory, Globe, ThumbsUp, Star, MessageCircle } from 'lucide-react';
+import { X, Award, ShieldCheck, Sparkles, IndianRupee, Clock, Factory, Globe, ThumbsUp, Star, MessageCircle } from 'lucide-react';
 
 const heroImages = [
   '/assets/hero-new-1.jpg',

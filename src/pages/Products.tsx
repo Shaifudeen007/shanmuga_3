@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import type { Product } from '../components/ProductCard';
 import { Search, SlidersHorizontal, SearchX } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const allProducts: Product[] = [
   {
@@ -141,7 +141,7 @@ const Products: React.FC = () => {
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
       >
         <AnimatePresence mode="popLayout">
-          {filteredProducts.map((product, i) => (
+          {filteredProducts.map((product) => (
             <motion.div
               layout
               key={product.id}
