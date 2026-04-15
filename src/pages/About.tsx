@@ -7,15 +7,15 @@ import { Globe, Trophy, ShieldCheck } from 'lucide-react';
 
 const About: React.FC = () => {
   return (
-    <div className="pt-16 pb-20">
+    <div className="pt-10 md:pt-16 pb-20">
       <motion.section 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="px-5 md:px-6 max-w-7xl mx-auto mb-8 md:mb-0 text-center"
+        className="px-5 md:px-6 max-w-7xl mx-auto mb-4 md:mb-0 text-center"
       >
-        <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Our Identity</span>
-        <h1 className="text-4xl md:text-6xl font-headline font-bold text-primary mb-6">About Us</h1>
+        <span className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] mb-1 block">Our Identity</span>
+        <h1 className="text-3xl md:text-6xl font-headline font-bold text-primary mb-4">About Us</h1>
         <div className="h-1.5 w-32 bg-gradient-to-r from-primary via-tertiary to-primary mx-auto rounded-full shadow-[0_0_20px_rgba(233,196,0,0.3)]" />
       </motion.section>
 
