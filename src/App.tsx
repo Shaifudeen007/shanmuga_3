@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BottomBar from './components/BottomBar';
+import Loader from './components/Loader';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -21,9 +23,22 @@ const ScrollToTop = () => {
 };
 
 const App: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Initial loading timer
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2800);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />
+      <AnimatePresence mode="wait">
+        {loading && <Loader key="loader" />}
+      </AnimatePresence>
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-grow pt-16 md:pt-0 pb-24 md:pb-0">

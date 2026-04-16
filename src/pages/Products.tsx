@@ -1,10 +1,45 @@
 import React, { useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import type { Product } from '../components/ProductCard';
-import { Search, SlidersHorizontal, SearchX } from 'lucide-react';
+import { Search, SearchX } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const allProducts: Product[] = [
+  {
+    id: 'MRK001',
+    name: 'STRAIGHT ALVAR KIRIDAM',
+    price: 15500,
+    category: 'Ornaments',
+    image: '/assets/products/mrk001.png',
+  },
+  {
+    id: 'MRK002',
+    name: 'STRAIGHT NORMAL KIRIDAM',
+    price: 12500,
+    category: 'Ornaments',
+    image: '/assets/products/mrk002.png',
+  },
+  {
+    id: 'MRK003',
+    name: 'STRAIGHT CLASSIC KIRIDAM',
+    price: 18500,
+    category: 'Ornaments',
+    image: '/assets/products/mrk003.png',
+  },
+  {
+    id: 'MRK004',
+    name: 'ANNAMALIYAR',
+    price: 22000,
+    category: 'Ornaments',
+    image: '/assets/products/mrk004.png',
+  },
+  {
+    id: 'MRK005',
+    name: 'ALAGIYAR',
+    price: 19500,
+    category: 'Ornaments',
+    image: '/assets/products/mrk005.png',
+  },
   {
     id: '1',
     name: 'Saffron Silk Deity Robe',
@@ -63,16 +98,11 @@ const allProducts: Product[] = [
   },
 ];
 
-const categories = ['All', 'God Clothing', 'Ornaments', 'Custom Designs'];
-
 const Products: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredProducts = allProducts.filter(p => {
-    const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
-    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return p.name.toLowerCase().includes(searchQuery.toLowerCase());
   });
 
   return (
@@ -82,54 +112,41 @@ const Products: React.FC = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mb-10 md:mb-12"
+        className="flex flex-col items-center text-center gap-6 mb-12"
       >
-        <div className="space-y-4">
-          <h1 className="text-3xl md:text-5xl font-headline font-bold text-primary">Our Products</h1>
-          <p className="text-on-surface-variant max-w-md text-sm md:text-base leading-relaxed">Browse our treasury of sacred products and divine ornaments.</p>
+        <div className="space-y-4 max-w-2xl">
+          <motion.span 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-primary font-bold tracking-[0.3em] uppercase text-xs"
+          >
+            Sacred Collection
+          </motion.span>
+          <h1 className="text-4xl md:text-6xl font-headline font-bold text-primary">Our Products</h1>
+          <motion.div 
+            initial={{ opacity: 0, width: 0 }}
+            animate={{ opacity: 1, width: 80 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="h-1 bg-gradient-to-r from-primary to-tertiary mx-auto rounded-full"
+          />
+          <p className="text-on-surface-variant text-sm md:text-base leading-relaxed mx-auto">
+            Browse our treasury of sacred products and divine ornaments, crafted with timeless devotion for Hindu deities.
+          </p>
         </div>
         
-        <div className="w-full md:w-auto flex flex-col sm:flex-row gap-4">
-          <div className="relative group w-full">
+        <div className="w-full flex justify-center mt-4">
+          <div className="relative group w-full sm:w-auto">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface/40 group-focus-within:text-primary transition-colors" size={18} />
             <input
               type="text"
               placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-surface-container-low border border-outline-variant/30 rounded-2xl py-3.5 pl-12 pr-6 w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
+              className="bg-surface-container-low border border-outline-variant/30 rounded-2xl py-3.5 pl-12 pr-6 w-full sm:w-96 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
             />
           </div>
-          <button className="flex items-center justify-center gap-2 bg-surface-container border border-outline-variant/30 px-6 py-3.5 rounded-2xl text-on-surface hover:bg-surface-container-high transition-all shrink-0">
-            <SlidersHorizontal size={18} />
-            <span className="text-xs font-bold uppercase tracking-widest">Filter</span>
-          </button>
         </div>
-      </motion.div>
-
-      {/* Categories - Scrollable on mobile */}
-      <motion.div 
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="flex overflow-x-auto pb-4 mb-10 gap-2 no-scrollbar -mx-5 px-5 md:mx-0 md:px-0 md:flex-wrap md:overflow-visible"
-      >
-        {categories.map((cat, i) => (
-          <motion.button
-            key={cat}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.05 + 0.3 }}
-            onClick={() => setActiveCategory(cat)}
-            className={`px-6 py-3 rounded-xl text-xs font-bold tracking-widest uppercase transition-all whitespace-nowrap border ${
-              activeCategory === cat
-                ? 'bg-primary text-on-primary border-primary shadow-lg shadow-primary/20'
-                : 'bg-surface-container-low text-on-surface/50 border-outline-variant/30 hover:border-primary/40'
-            }`}
-          >
-            {cat}
-          </motion.button>
-        ))}
       </motion.div>
 
       {/* Grid */}
@@ -137,7 +154,7 @@ const Products: React.FC = () => {
         layout
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
       >
         <AnimatePresence mode="popLayout">

@@ -5,7 +5,7 @@ import { Mail, Phone, MapPin, MessageCircle, Send } from 'lucide-react';
 
 const Contact: React.FC = () => {
   return (
-    <div className="pt-20 pb-20">
+    <div className="pt-28 pb-20">
       {/* Header */}
       <motion.section 
         initial={{ opacity: 0, y: -20 }}
@@ -23,9 +23,9 @@ const Contact: React.FC = () => {
         {/* Info Cards */}
         <div className="lg:col-span-4 space-y-4 md:space-y-6">
           {[
-            { icon: <Phone className="text-primary" size={24} />, title: "Voice of Devotion", detail: "+91 98450 12345" },
-            { icon: <Mail className="text-primary" size={24} />, title: "Email Correspondence", detail: "info@shanmughacliparts.com" },
-            { icon: <MapPin className="text-primary" size={24} />, title: "Our Workshop", detail: "108 Divine Street, Tamil Nadu" },
+            { icon: <Phone className="text-primary" size={24} />, title: "Voice of Devotion", detail: "+91 94896 86435" },
+            { icon: <Mail className="text-primary" size={24} />, title: "Email Correspondence", detail: "shanmugacliparts@gmail.com" },
+            { icon: <MapPin className="text-primary" size={24} />, title: "Our Workshop", detail: "40, Sattiyapper West Street, Nagapattinam, Tamil Nadu" },
           ].map((item, i) => (
             <motion.div 
               key={i}
@@ -33,14 +33,14 @@ const Contact: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.1 + 0.3, duration: 0.6 }}
               whileHover={{ x: 10 }}
-              className="bg-surface-container p-6 md:p-8 rounded-2xl flex items-center gap-5 md:gap-6 border border-outline-variant/10 shadow-sm"
+              className="bg-surface-container p-4 md:p-5 rounded-2xl flex items-center gap-4 md:gap-5 border border-outline-variant/10 shadow-sm"
             >
-              <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
                 {item.icon}
               </div>
               <div>
-                <h3 className="font-bold text-[10px] md:text-xs uppercase tracking-widest text-primary/60 mb-1">{item.title}</h3>
-                <p className="text-sm md:text-lg font-headline font-bold">{item.detail}</p>
+                <h3 className="font-bold text-[9px] md:text-[10px] uppercase tracking-widest text-primary/60 mb-0.5">{item.title}</h3>
+                <p className="text-xs md:text-base font-sans font-bold leading-tight">{item.detail}</p>
               </div>
             </motion.div>
           ))}
@@ -55,14 +55,21 @@ const Contact: React.FC = () => {
             <p className="text-on-primary/70 text-xs md:text-sm leading-relaxed">
               Prefer a quick chat? Message us directly on WhatsApp for instant assistance with orders and custom designs.
             </p>
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-[#25D366]/40 transition-all min-h-[56px] text-sm uppercase tracking-widest cursor-pointer"
+            <a 
+              href="https://wa.me/919489686435"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
             >
-              <MessageCircle size={20} />
-              WhatsApp Us
-            </motion.button>
+              <motion.button 
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full flex items-center justify-center gap-3 bg-[#25D366] text-white py-4 rounded-2xl font-bold shadow-lg hover:shadow-[#25D366]/40 transition-all min-h-[56px] text-xs uppercase tracking-widest cursor-pointer"
+              >
+                <MessageCircle size={18} />
+                WhatsApp Us
+              </motion.button>
+            </a>
           </motion.div>
         </div>
 
@@ -71,32 +78,32 @@ const Contact: React.FC = () => {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="lg:col-span-8 bg-surface-container-low border border-outline-variant/30 p-6 md:p-12 rounded-[2.5rem] shadow-sm"
+          className="lg:col-span-8 bg-surface-container-low border border-outline-variant/30 p-6 md:p-10 rounded-[2.5rem] shadow-sm"
         >
-          <h2 className="text-2xl md:text-4xl font-headline font-bold text-primary mb-8 md:mb-12 text-center lg:text-left">Send a Message</h2>
-          <form className="space-y-6 md:space-y-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-              <div className="space-y-2 md:space-y-3">
-                <label className="text-xs md:text-sm font-bold uppercase tracking-widest text-on-surface/50 ml-2">Full Name</label>
+          <h2 className="text-2xl md:text-3xl font-headline font-bold text-primary mb-6 md:mb-8 text-center lg:text-left">Send a Message</h2>
+          <form className="space-y-4 md:space-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold uppercase tracking-widest text-on-surface/50 ml-2">Full Name</label>
                 <input
                   type="text"
                   placeholder="Arun Kumar"
-                  className="w-full bg-white dark:bg-stone-900 border border-outline-variant/20 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-sm"
+                  className="w-full bg-white dark:bg-stone-900 border border-outline-variant/20 rounded-2xl py-3 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-sm"
                 />
               </div>
-              <div className="space-y-2 md:space-y-3">
-                <label className="text-xs md:text-sm font-bold uppercase tracking-widest text-on-surface/50 ml-2">Phone Number</label>
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold uppercase tracking-widest text-on-surface/50 ml-2">Phone Number</label>
                 <input
                   type="tel"
                   placeholder="+91 00000 00000"
-                  className="w-full bg-white dark:bg-stone-900 border border-outline-variant/20 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-sm"
+                  className="w-full bg-white dark:bg-stone-900 border border-outline-variant/20 rounded-2xl py-3 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-sm"
                 />
               </div>
             </div>
             
-            <div className="space-y-2 md:space-y-3">
-              <label className="text-xs md:text-sm font-bold uppercase tracking-widest text-on-surface/50 ml-2">Inquiry Type</label>
-              <select className="w-full bg-white dark:bg-stone-900 border border-outline-variant/20 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-sm appearance-none">
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold uppercase tracking-widest text-on-surface/50 ml-2">Inquiry Type</label>
+              <select className="w-full bg-white dark:bg-stone-900 border border-outline-variant/20 rounded-2xl py-3 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-sm appearance-none">
                 <option>Custom Divine Wear</option>
                 <option>Bulk Order for Temple</option>
                 <option>Sizing Assistance</option>
@@ -104,16 +111,16 @@ const Contact: React.FC = () => {
               </select>
             </div>
 
-            <div className="space-y-2 md:space-y-3">
-              <label className="text-xs md:text-sm font-bold uppercase tracking-widest text-on-surface/50 ml-2">Your Vision</label>
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold uppercase tracking-widest text-on-surface/50 ml-2">Your Vision</label>
               <textarea
                 placeholder="Describe your sacred requirement..."
-                rows={5}
-                className="w-full bg-white dark:bg-stone-900 border border-outline-variant/20 rounded-2xl py-4 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-sm resize-none"
+                rows={4}
+                className="w-full bg-white dark:bg-stone-900 border border-outline-variant/20 rounded-2xl py-3 px-6 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-sm resize-none"
               ></textarea>
             </div>
 
-            <Button className="w-full min-h-[56px] flex items-center justify-center gap-3 transition-transform hover:scale-[1.02] active:scale-[0.98]" size="lg">
+            <Button className="w-full min-h-[50px] flex items-center justify-center gap-3 transition-transform hover:scale-[1.02] active:scale-[0.98]" size="lg">
               Deliver Message <Send size={18} />
             </Button>
           </form>

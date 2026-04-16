@@ -56,7 +56,9 @@ const Typewriter: React.FC<TypewriterProps> = ({
   return (
     <span ref={containerRef} className={`${className} inline-flex items-center min-h-[1.2em]`}>
       {currentText}
-      <span className="w-1 h-[0.8em] bg-current opacity-60 ml-1 animate-pulse" />
+      {currentIndex < text.length && (
+        <span className="w-1 h-[0.8em] bg-current opacity-60 ml-0.5 animate-pulse" />
+      )}
     </span>
   );
 };

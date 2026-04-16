@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
         <motion.nav 
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="flex items-center gap-2 md:gap-4 px-4 md:px-5 py-1.5 rounded-full bg-[#2b0604]/90 backdrop-blur-3xl border border-white/5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] h-12 md:h-14"
+          className="flex items-center gap-2 md:gap-4 px-4 md:px-5 py-1.5 rounded-full bg-[#2b0604]/90 backdrop-blur-3xl border border-white/5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] h-12 md:h-16"
         >
           {/* Logo */}
           <Link to="/" className="hidden md:flex items-center pr-4 border-r border-white/10 h-6 mr-1 group">
@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
                     )}
                   </AnimatePresence>
                   
-                  <span className={`text-xs md:text-sm font-medium transition-colors duration-300 ${isActive ? 'text-tertiary' : 'text-white/70 group-hover:text-tertiary'}`}>
+                  <span className={`text-xs md:text-sm font-semibold transition-colors duration-300 ${isActive ? 'text-tertiary' : 'text-white/70 group-hover:text-tertiary'}`}>
                     {link.name}
                   </span>
                 </Link>
@@ -98,16 +98,33 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Header - Visible only on Mobile */}
-      <div className={`md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-3 transition-all duration-500 ${
+      <div className={`md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-500 ${
         scrolled 
           ? 'bg-background/80 dark:bg-stone-900/80 backdrop-blur-lg border-b border-outline-variant/5 shadow-lg' 
           : 'bg-transparent backdrop-blur-none'
       }`}>
         <Link to="/" className="flex items-center">
           <span 
-            className="text-primary-container dark:text-white text-lg font-medium tracking-wide"
+            className="flex items-center text-primary-container dark:text-white text-2xl font-bold tracking-tight"
             style={{ fontFamily: "'Noto Serif', serif" }}
           >
+            <svg 
+              viewBox="0 0 24 24" 
+              width="28" 
+              height="28" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              className="mr-2 text-primary dark:text-tertiary"
+            >
+              <path d="M12 2L8 6h8l-4-4z" />
+              <path d="M6 6h12v4H6z" />
+              <path d="M4 10h16v4H4z" />
+              <path d="M2 14h20v6H2z" />
+              <path d="M10 20v2h4v-2" />
+            </svg>
             Shanmuga Clip Arts
           </span>
         </Link>

@@ -161,7 +161,7 @@ const Home: React.FC = () => {
   return (
     <div className="overflow-hidden bg-background">
       {/* Hero Section */}
-      <section className="relative min-h-[calc(100dvh-40px)] md:h-auto md:min-h-[80vh] flex items-center justify-center overflow-x-hidden pt-8 md:pt-24 pb-8 md:pb-16 mt-0 md:mt-0">
+      <section className="relative min-h-[calc(100dvh-40px)] md:h-auto md:min-h-[80vh] flex items-center justify-center overflow-x-hidden pt-6 md:pt-24 pb-8 md:pb-16 mt-0 md:mt-0">
         <div className="absolute inset-0 radial-sanctuary dark:hero-dark-bg opacity-30 dark:opacity-100"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background dark:via-transparent dark:to-background/80"></div>
         <div className="container mx-auto px-6 md:px-12 lg:px-24 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-20 items-center relative z-10 h-full">
@@ -256,7 +256,7 @@ const Home: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex md:block flex-col space-y-4 md:space-y-6 max-w-2xl relative z-30 p-0 md:pl-0 text-left md:text-left shadow-none md:translate-x-48 order-2 md:order-1 -mt-6 md:mt-0 mb-20 md:mb-0"
+            className="flex md:block flex-col space-y-4 md:space-y-6 max-w-2xl relative z-30 p-0 md:pl-0 text-left md:text-left shadow-none md:translate-x-48 order-2 md:order-1 -mt-4 md:mt-0 mb-20 md:mb-0"
           >
             <h1 className="text-4xl md:text-[5rem] font-serif-title font-bold leading-tight tracking-tighter text-on-surface">
               Bringing Tradition <br />
@@ -673,7 +673,7 @@ const Home: React.FC = () => {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="py-8 md:py-16 relative overflow-hidden bg-primary border-t border-primary-container"
+        className="py-12 md:py-20 mt-10 md:mt-16 relative overflow-hidden bg-primary border-t border-primary-container"
       >
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/p6.png')]" />
         <div className="max-w-4xl mx-auto text-center relative z-10 px-8">

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import Button from '../components/Button';
 import Typewriter from '../components/Typewriter';
 import CountingNumber from '../components/CountingNumber';
-import { Globe, Trophy, ShieldCheck } from 'lucide-react';
+import { Globe, Trophy, ShieldCheck, Award } from 'lucide-react';
 
 const About: React.FC = () => {
   return (
@@ -59,7 +59,6 @@ const About: React.FC = () => {
               <Typewriter text="Ln. T. Manoj Kumar" delay={30} waitBeforeStart={200} />
             </h2>
             <p className="text-primary/80 font-bold text-sm tracking-widest uppercase">BCA., MBA. — Founder & Visionary</p>
-            <div className="h-1 w-20 bg-primary rounded-full" />
           </div>
           
           <div className="space-y-6 text-on-surface-variant leading-relaxed text-sm md:text-base italic">
@@ -92,7 +91,7 @@ const About: React.FC = () => {
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         
         <div className="max-w-7xl mx-auto px-5 md:px-6 relative z-10">
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-y-12 gap-x-8">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-y-12 gap-x-8">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -137,6 +136,22 @@ const About: React.FC = () => {
                  </div>
                </div>
               <p className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-on-surface-variant/80 leading-relaxed max-w-[120px] mx-auto">Tamil Nadu Best Craftsman</p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.35 }}
+              className="text-center space-y-4"
+            >
+               <div className="flex justify-center">
+                 <div className="p-3 bg-primary/5 rounded-2xl relative group">
+                   <Award className="text-primary w-8 h-8 md:w-10 md:h-10 transition-transform group-hover:scale-110" />
+                   <div className="absolute -inset-1 bg-primary/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                 </div>
+               </div>
+              <p className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-on-surface-variant/80 leading-relaxed max-w-[120px] mx-auto">Tamil Nadu Business Iconic Award</p>
             </motion.div>
 
             <motion.div 
