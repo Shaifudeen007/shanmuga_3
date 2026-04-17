@@ -13,7 +13,7 @@ const BottomBar: React.FC = () => {
   ];
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 w-full z-50">
+    <div className="lg:hidden fixed bottom-0 left-0 w-full z-50">
       <div className="bg-background dark:bg-[#2b0604]/80 backdrop-blur-none dark:backdrop-blur-2xl border-t border-outline-variant/10 flex justify-around items-center py-2 px-4 shadow-[0_-2px_15px_rgba(0,0,0,0.1)]">
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;

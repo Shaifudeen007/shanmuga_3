@@ -34,15 +34,15 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      {/* Desktop Navbar - Hidden on Mobile */}
-      <div className="hidden md:flex fixed top-8 left-0 right-0 z-50 justify-center px-4">
+      {/* Desktop Navbar - Hidden on Mobile/Tablet */}
+      <div className="hidden lg:flex fixed top-8 left-0 right-0 z-50 justify-center px-4">
         <motion.nav 
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           className="flex items-center gap-2 md:gap-4 px-4 md:px-5 py-1.5 rounded-full bg-[#2b0604]/90 backdrop-blur-3xl border border-white/5 shadow-[0_20px_40px_rgba(0,0,0,0.6)] h-12 md:h-16"
         >
           {/* Logo */}
-          <Link to="/" className="hidden md:flex items-center pr-4 border-r border-white/10 h-6 mr-1 group">
+          <Link to="/" className="hidden lg:flex items-center pr-4 border-r border-white/10 h-6 mr-1 group">
             <span className="glare-text font-black tracking-tighter text-2xl leading-none transition-transform group-hover:scale-110" style={{ fontFamily: "'Noto Serif', serif" }}>S</span>
           </Link>
 
@@ -89,7 +89,7 @@ const Navbar: React.FC = () => {
               href="https://wa.me/919489686435"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:block px-5 py-2 rounded-full bg-tertiary/10 hover:bg-tertiary/20 text-tertiary font-bold text-[11px] tracking-wider uppercase transition-all border border-tertiary/20"
+              className="hidden lg:block px-5 py-2 rounded-full bg-tertiary/10 hover:bg-tertiary/20 text-tertiary font-bold text-[11px] tracking-wider uppercase transition-all border border-tertiary/20"
             >
               Book a Call
             </a>
@@ -97,8 +97,8 @@ const Navbar: React.FC = () => {
         </motion.nav>
       </div>
 
-      {/* Mobile Header - Visible only on Mobile */}
-      <div className={`md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-500 ${
+      {/* Mobile/Tablet Header - Visible only on Mobile/Tablet */}
+      <div className={`lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-all duration-500 ${
         scrolled 
           ? 'bg-background/80 dark:bg-stone-900/80 backdrop-blur-lg border-b border-outline-variant/5 shadow-lg' 
           : 'bg-transparent backdrop-blur-none'

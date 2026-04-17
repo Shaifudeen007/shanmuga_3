@@ -191,19 +191,19 @@ const Home: React.FC = () => {
                     filter: 'blur(0px) brightness(1)'
                   },
                   left: { 
-                    x: '-35%', 
-                    scale: 0.8, 
+                    x: '-25%', 
+                    scale: 0.85, 
                     zIndex: 20, 
-                    opacity: 0.5, 
-                    rotateY: 25,
+                    opacity: 0.4, 
+                    rotateY: 20,
                     filter: 'blur(2px) brightness(0.7)'
                   },
                   right: { 
-                    x: '35%', 
-                    scale: 0.8, 
+                    x: '25%', 
+                    scale: 0.85, 
                     zIndex: 20, 
-                    opacity: 0.5, 
-                    rotateY: -25,
+                    opacity: 0.4, 
+                    rotateY: -20,
                     filter: 'blur(2px) brightness(0.7)'
                   },
                   hidden: { 
@@ -225,17 +225,17 @@ const Home: React.FC = () => {
                       duration: 0.8, 
                       ease: [0.4, 0, 0.2, 1] 
                     }}
-                    className="absolute w-[260px] h-[360px] md:w-[400px] md:h-[560px] rounded-[3rem] overflow-hidden border-2 border-tertiary/30 shadow-[0_30px_70px_rgba(0,0,0,0.6)] bg-surface-container-low"
+                    className="absolute w-[220px] h-[300px] xs:w-[260px] xs:h-[360px] sm:w-[320px] sm:h-[450px] md:w-[400px] md:h-[560px] rounded-[2.5rem] md:rounded-[3rem] overflow-hidden border-2 border-tertiary/30 shadow-[0_30px_70px_rgba(0,0,0,0.6)] bg-surface-container-low"
                   >
                     <img 
                       src={src} 
-                      className="w-full h-full object-cover select-none" 
+                      className="w-full h-full object-cover select-none pointer-events-none" 
                       alt={`Sacred Artwork ${i + 1}`} 
                       draggable={false}
                     />
                     
                     {/* Inner highlight for premium feel */}
-                    <div className="absolute inset-0 border border-white/10 rounded-[2.5rem] pointer-events-none" />
+                    <div className="absolute inset-0 border border-white/10 rounded-[2.2rem] md:rounded-[2.5rem] pointer-events-none" />
                     
                     {/* Bottom pulse glow for center image */}
                     {position === 'center' && (
@@ -256,9 +256,9 @@ const Home: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex md:block flex-col space-y-4 md:space-y-6 max-w-2xl relative z-30 p-0 md:pl-0 text-left md:text-left shadow-none md:translate-x-48 order-2 md:order-1 -mt-4 md:mt-0 mb-20 md:mb-0"
+            className="flex md:block flex-col space-y-4 md:space-y-6 max-w-2xl relative z-30 p-0 md:pl-0 text-left md:text-left shadow-none lg:translate-x-24 xl:translate-x-48 order-2 md:order-1 -mt-4 md:mt-0 mb-20 md:mb-0"
           >
-            <h1 className="text-4xl md:text-[5rem] font-serif-title font-bold leading-tight tracking-tighter text-on-surface">
+            <h1 className="text-4xl md:text-6xl lg:text-[5rem] font-serif-title font-bold leading-tight tracking-tighter text-on-surface">
               Bringing Tradition <br />
               into a <span className="bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">new era</span>
             </h1>
@@ -318,7 +318,7 @@ const Home: React.FC = () => {
             />
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-10">
             {productCategories.map((cat, i) => (
               <motion.div
                 key={i}
@@ -327,7 +327,7 @@ const Home: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
                 whileHover={{ y: -8 }}
-                className={`group cursor-pointer ${i === 4 ? 'col-span-2 mx-auto w-[calc(50%-0.5rem)] md:col-span-1 md:w-full' : ''}`}
+                className={`group cursor-pointer ${i === 4 ? 'col-span-2 xs:col-span-1 xs:mx-0 mx-auto w-1/2 xs:w-full sm:col-span-1 lg:col-span-1' : ''}`}
                 onClick={() => openModal(productCategories.map(c => c.image), i)}
               >
                 <div className="relative group">
@@ -398,7 +398,7 @@ const Home: React.FC = () => {
             />
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4 md:gap-10">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-10">
             {featuredProducts.map((product, i) => (
               <motion.div
                 key={product.id}
@@ -407,7 +407,7 @@ const Home: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
                 whileHover={{ y: -10 }}
-                className="group cursor-pointer w-[calc(50%-0.5rem)] md:w-[calc(33.33%-2.5rem)] lg:w-[calc(20%-2.5rem)]"
+                className="group cursor-pointer w-full"
                 onClick={() => openModal(featuredProducts.map(p => p.image), i)}
               >
                 <div className="relative group">
@@ -495,9 +495,9 @@ const Home: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-6xl mx-auto px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-12 max-w-6xl mx-auto px-6 md:px-8">
           {/* Left Column - First 4 items */}
-          <div className="space-y-12">
+          <div className="space-y-10 md:space-y-12">
             {whyChooseUsItems.slice(0, 4).map((item, i) => (
               <motion.div 
                 key={i}
@@ -505,13 +505,13 @@ const Home: React.FC = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 + 0.3, duration: 0.6 }}
-                className="flex items-start gap-6"
+                className="flex items-start gap-4 md:gap-6"
               >
-                <div className="flex-shrink-0 mt-1 p-3 bg-surface-container rounded-2xl shadow-sm">
+                <div className="shrink-0 mt-1 p-2.5 md:p-3 bg-surface-container rounded-2xl shadow-sm">
                   {item.icon}
                 </div>
                 <div className="flex flex-col">
-                  <h3 className="text-xl font-headline font-bold text-on-surface dark:text-white mb-2">{item.title}</h3>
+                  <h3 className="text-lg md:text-xl font-headline font-bold text-on-surface dark:text-white mb-1.5 md:mb-2">{item.title}</h3>
                   <p className="text-sm text-on-surface-variant font-light leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
@@ -519,7 +519,7 @@ const Home: React.FC = () => {
           </div>
 
           {/* Right Column - Remaining 4 items */}
-          <div className="space-y-12">
+          <div className="space-y-10 md:space-y-12">
             {whyChooseUsItems.slice(4).map((item, i) => (
               <motion.div 
                 key={i}
@@ -527,13 +527,13 @@ const Home: React.FC = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 + 0.3, duration: 0.6 }}
-                className="flex items-start gap-6"
+                className="flex items-start gap-4 md:gap-6"
               >
-                <div className="flex-shrink-0 mt-1 p-3 bg-surface-container rounded-2xl shadow-sm">
+                <div className="shrink-0 mt-1 p-2.5 md:p-3 bg-surface-container rounded-2xl shadow-sm">
                   {item.icon}
                 </div>
                 <div className="flex flex-col">
-                  <h3 className="text-xl font-headline font-bold text-on-surface dark:text-white mb-2">{item.title}</h3>
+                  <h3 className="text-lg md:text-xl font-headline font-bold text-on-surface dark:text-white mb-1.5 md:mb-2">{item.title}</h3>
                   <p className="text-sm text-on-surface-variant font-light leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
@@ -565,30 +565,30 @@ const Home: React.FC = () => {
 
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Side: Names List */}
-            <div className="lg:col-span-4 flex flex-col gap-4">
+            <div className="lg:col-span-4 flex flex-row lg:flex-col gap-3 md:gap-4 overflow-x-auto no-scrollbar pb-4 lg:pb-0 px-1">
               {testimonials.map((t, i) => (
                 <motion.button
                   key={i}
                   onClick={() => setActiveTestimonial(i)}
                   onMouseEnter={() => setActiveTestimonial(i)}
-                  className={`group relative flex items-center gap-3 p-3.5 rounded-xl transition-all duration-500 text-left border-none focus:outline-none ${
+                  className={`group relative flex items-center gap-3 p-3 md:p-3.5 rounded-xl transition-all duration-500 text-left border-none focus:outline-none shrink-0 lg:shrink-1 ${
                     activeTestimonial === i 
-                    ? 'bg-primary shadow-xl shadow-primary/20 -translate-x-2 lg:-translate-x-4' 
+                    ? 'bg-primary shadow-xl shadow-primary/20 lg:-translate-x-4' 
                     : 'bg-surface-container hover:bg-surface-container-high'
                   }`}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.05 }}
                 >
 
-                  <div>
-                    <h4 className={`font-headline font-bold text-sm transition-colors ${
+                  <div className="whitespace-nowrap lg:whitespace-normal">
+                    <h4 className={`font-headline font-bold text-xs md:text-sm transition-colors ${
                       activeTestimonial === i ? 'text-white' : 'text-on-surface'
                     }`}>
                       {t.name}
                     </h4>
-                    <p className={`text-[10px] uppercase tracking-widest transition-colors ${
+                    <p className={`text-[8px] md:text-[10px] uppercase tracking-widest transition-colors ${
                       activeTestimonial === i ? 'text-white/70' : 'text-on-surface-variant'
                     }`}>
                       {t.location}
@@ -598,7 +598,7 @@ const Home: React.FC = () => {
                   {activeTestimonial === i && (
                     <motion.div 
                       layoutId="active-indicator"
-                      className="absolute right-4 w-2 h-2 rounded-full bg-white shadow-[0_0_10px_white]"
+                      className="hidden lg:block absolute right-4 w-2 h-2 rounded-full bg-white shadow-[0_0_10px_white]"
                     />
                   )}
                 </motion.button>

@@ -91,7 +91,7 @@ const About: React.FC = () => {
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         
         <div className="max-w-7xl mx-auto px-5 md:px-6 relative z-10">
-          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-y-12 gap-x-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-y-12 gap-x-8">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

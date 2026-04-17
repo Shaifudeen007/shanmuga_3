@@ -9,7 +9,7 @@ const Projects: React.FC = () => {
       client: "Madurai Temple Trust",
       description: "Sacred murals restored with traditional natural pigments, preserving the divinity for future generations.",
       image: "/assets/temple_mural_project_1776277757919.png",
-      span: "lg:col-span-2 lg:row-span-2",
+      span: "md:col-span-2 md:row-span-2 lg:col-span-2 lg:row-span-2",
       tag: "HERITAGE"
     },
     {
@@ -17,7 +17,7 @@ const Projects: React.FC = () => {
       client: "Private Heirloom",
       description: "Bespoke gold jewelry and traditional attire designed for a grand heritage wedding ceremony.",
       image: "/assets/wedding_jewelry_project_1776277779440.png",
-      span: "lg:col-span-2 lg:row-span-1",
+      span: "md:col-span-2 lg:col-span-2 lg:row-span-1",
       tag: "WEDDING"
     },
     {
@@ -25,7 +25,7 @@ const Projects: React.FC = () => {
       client: "Sacred Shrine Society",
       description: "Intricately hand-crafted gold-plated ornaments for temple deities.",
       image: "/assets/deity_ornaments_project_1776277797412.png",
-      span: "lg:col-span-1 lg:row-span-1",
+      span: "col-span-1 lg:col-span-1 lg:row-span-1",
       tag: "SACRED"
     },
     {
@@ -33,7 +33,7 @@ const Projects: React.FC = () => {
       client: "Festival Commission",
       description: "Exquisite hand-embroidered deity vestments featuring traditional Muthangi work.",
       image: "/assets/deity_robe_project_1776277816056.png",
-      span: "lg:col-span-1 lg:row-span-1",
+      span: "col-span-1 lg:col-span-1 lg:row-span-1",
       tag: "ARTISTRY"
     },
     {
@@ -41,7 +41,7 @@ const Projects: React.FC = () => {
       client: "Annual Mahotsavam",
       description: "Full-scale ornamental backdrop design for significant temple festivals and celebrations.",
       image: "/assets/festival_backdrop_project_1776277838220.png",
-      span: "lg:col-span-2 lg:row-span-1",
+      span: "md:col-span-2 lg:col-span-2 lg:row-span-1",
       tag: "FESTIVAL"
     }
   ];
