@@ -170,7 +170,7 @@ const Home: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
-            className="flex items-center justify-center relative h-[450px] md:h-[600px] w-full max-w-2xl perspective-1000 z-10 mx-auto md:ml-auto md:mr-0 order-1 md:order-2 -mt-2 md:mt-0"
+            className="flex items-center justify-center relative h-[440px] md:h-[620px] w-full max-w-3xl perspective-1000 z-10 mx-auto md:ml-auto md:mr-0 order-1 md:order-2 -mt-4 md:mt-0"
           >
             <div className="relative w-full h-full flex items-center justify-center">
               {heroImages.map((src, i) => {
@@ -225,7 +225,7 @@ const Home: React.FC = () => {
                       duration: 0.8, 
                       ease: [0.4, 0, 0.2, 1] 
                     }}
-                    className="absolute w-[220px] h-[300px] xs:w-[260px] xs:h-[360px] sm:w-[320px] sm:h-[450px] md:w-[400px] md:h-[560px] rounded-[2.5rem] md:rounded-[3rem] overflow-hidden border-2 border-tertiary/30 shadow-[0_30px_70px_rgba(0,0,0,0.6)] bg-surface-container-low"
+                    className="absolute w-[280px] h-[390px] xs:w-[300px] xs:h-[420px] sm:w-[340px] sm:h-[480px] md:w-[400px] md:h-[560px] rounded-[2.5rem] md:rounded-[3rem] overflow-hidden border-2 border-tertiary/30 shadow-[0_30px_70px_rgba(0,0,0,0.6)] bg-surface-container-low"
                   >
                     <img 
                       src={src} 
@@ -256,7 +256,7 @@ const Home: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex md:block flex-col space-y-4 md:space-y-6 max-w-2xl relative z-30 p-0 md:pl-0 text-left md:text-left shadow-none lg:translate-x-24 xl:translate-x-48 order-2 md:order-1 -mt-4 md:mt-0 mb-20 md:mb-0"
+            className="flex md:block flex-col space-y-4 md:space-y-6 max-w-2xl relative z-30 p-0 md:pl-0 text-left md:text-left shadow-none lg:translate-x-24 xl:translate-x-48 order-2 md:order-1 mt-4 md:mt-0 mb-20 md:mb-0"
           >
             <h1 className="text-4xl md:text-6xl lg:text-[5rem] font-serif-title font-bold leading-tight tracking-tighter text-on-surface">
               Bringing Tradition <br />
@@ -327,7 +327,7 @@ const Home: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
                 whileHover={{ y: -8 }}
-                className={`group cursor-pointer ${i === 4 ? 'col-span-2 xs:col-span-1 xs:mx-0 mx-auto w-1/2 xs:w-full sm:col-span-1 lg:col-span-1' : ''}`}
+                className={`group cursor-pointer ${i === 4 ? 'col-span-2 sm:col-span-1 lg:col-span-1 mx-auto w-1/2 sm:w-full' : ''}`}
                 onClick={() => openModal(productCategories.map(c => c.image), i)}
               >
                 <div className="relative group">
@@ -407,7 +407,7 @@ const Home: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
                 whileHover={{ y: -10 }}
-                className="group cursor-pointer w-full"
+                className="group cursor-pointer w-full max-w-[260px] md:max-w-[280px] mx-auto"
                 onClick={() => openModal(featuredProducts.map(p => p.image), i)}
               >
                 <div className="relative group">
@@ -422,11 +422,11 @@ const Home: React.FC = () => {
                   />
                   
                   {/* Product Image Box */}
-                  <div className="glare-card relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-5 shadow-xl transition-all duration-500 group-hover:shadow-primary/20 border border-primary/20 dark:border-outline-variant/10 glow-maroon-pulse dark:[animation:none] dark:shadow-none backdrop-blur-md bg-surface-container-low/40 z-10">
+                  <div className="glare-card relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-5 shadow-xl transition-all duration-500 group-hover:shadow-primary/20 border border-primary/20 dark:border-outline-variant/10 glow-maroon-pulse dark:[animation:none] dark:shadow-none backdrop-blur-md bg-surface-container-low/40 p-2 z-10">
                     <img 
                       src={product.image} 
                       alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 rounded-2xl" 
                     />
                     
                     {/* Hover Overlay */}

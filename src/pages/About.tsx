@@ -7,7 +7,7 @@ import { Globe, Trophy, ShieldCheck, Award } from 'lucide-react';
 
 const About: React.FC = () => {
   return (
-    <div className="pt-10 md:pt-16 pb-20">
+    <div className="pt-20 md:pt-28 pb-20">
       <motion.section 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -91,13 +91,13 @@ const About: React.FC = () => {
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         
         <div className="max-w-7xl mx-auto px-5 md:px-6 relative z-10">
-          <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-y-12 gap-x-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-y-16 gap-x-4 md:gap-x-8">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-center space-y-3"
+              className="text-center space-y-5 flex flex-col items-center"
             >
               <div className="text-4xl md:text-6xl font-headline font-bold text-primary flex items-center justify-center gap-1">
                 <CountingNumber value={5} />
@@ -112,7 +112,7 @@ const About: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-center space-y-3"
+              className="text-center space-y-5 flex flex-col items-center"
             >
               <div className="text-4xl md:text-6xl font-headline font-bold text-primary flex items-center justify-center gap-1">
                 <CountingNumber value={1000} />
@@ -127,7 +127,7 @@ const About: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="text-center space-y-4"
+              className="text-center space-y-5 flex flex-col items-center"
             >
                <div className="flex justify-center">
                  <div className="p-3 bg-primary/5 rounded-2xl relative group">
@@ -143,7 +143,7 @@ const About: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35 }}
-              className="text-center space-y-4"
+              className="text-center space-y-5 flex flex-col items-center"
             >
                <div className="flex justify-center">
                  <div className="p-3 bg-primary/5 rounded-2xl relative group">
@@ -159,7 +159,7 @@ const About: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="text-center space-y-4"
+              className="text-center space-y-5 flex flex-col items-center"
             >
                <div className="flex justify-center">
                  <div className="p-3 bg-primary/5 rounded-2xl relative group">
@@ -175,7 +175,7 @@ const About: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
-              className="text-center space-y-4 col-span-2 lg:col-span-1"
+              className="text-center space-y-5 flex flex-col items-center"
             >
                <div className="flex justify-center">
                  <div className="p-3 bg-primary/5 rounded-2xl relative group">
