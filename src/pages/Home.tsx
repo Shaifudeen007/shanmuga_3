@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { X, Award, ShieldCheck, Sparkles, IndianRupee, Clock, Factory, Globe, ThumbsUp, Star, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import CountingNumber from '../components/CountingNumber';
-import { allProducts } from '../data/products';
 
 const heroImages = [
   '/assets/hero-new-1.jpg',
