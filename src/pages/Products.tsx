@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ProductCard from '../components/ProductCard';
-import type { Product } from '../components/ProductCard';
 import { Search, SearchX } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 

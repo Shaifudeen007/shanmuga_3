@@ -28,9 +28,6 @@ const Home: React.FC = () => {
   const [modalData, setModalData] = useState<{ images: string[], index: number } | null>(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
-  const openModal = (images: string[], index: number) => {
-    setModalData({ images, index });
-  };
 
   const nextImage = (e?: React.MouseEvent) => {
     e?.stopPropagation();

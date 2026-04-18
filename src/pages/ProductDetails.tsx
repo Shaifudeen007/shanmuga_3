@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MessageCircle, ChevronLeft, Star } from 'lucide-react';
-import type { Product } from '../components/ProductCard';
 
 import { allProducts } from '../data/products';
 
