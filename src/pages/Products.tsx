@@ -4,99 +4,7 @@ import type { Product } from '../components/ProductCard';
 import { Search, SearchX } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const allProducts: Product[] = [
-  {
-    id: 'MRK001',
-    name: 'STRAIGHT ALVAR KIRIDAM',
-    price: 15500,
-    category: 'Ornaments',
-    image: '/assets/products/mrk001.png',
-  },
-  {
-    id: 'MRK002',
-    name: 'STRAIGHT NORMAL KIRIDAM',
-    price: 12500,
-    category: 'Ornaments',
-    image: '/assets/products/mrk002.png',
-  },
-  {
-    id: 'MRK003',
-    name: 'STRAIGHT CLASSIC KIRIDAM',
-    price: 18500,
-    category: 'Ornaments',
-    image: '/assets/products/mrk003.png',
-  },
-  {
-    id: 'MRK004',
-    name: 'ANNAMALIYAR',
-    price: 22000,
-    category: 'Ornaments',
-    image: '/assets/products/mrk004.png',
-  },
-  {
-    id: 'MRK005',
-    name: 'ALAGIYAR',
-    price: 19500,
-    category: 'Ornaments',
-    image: '/assets/products/mrk005.png',
-  },
-  {
-    id: '1',
-    name: 'Saffron Silk Deity Robe',
-    price: 4500,
-    category: 'God Clothing',
-    image: 'https://images.unsplash.com/photo-1583089892943-e02e5b017b6a?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: '2',
-    name: 'Antique Gold Kavacham',
-    price: 12500,
-    category: 'Ornaments',
-    image: 'https://images.unsplash.com/photo-1606293926075-69a00dbfde81?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: '3',
-    name: 'Emerald Studded Crown',
-    price: 8900,
-    category: 'Ornaments',
-    image: 'https://images.unsplash.com/photo-1599481238332-b21a93fb12d7?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: '4',
-    name: 'Velvet Peetham Cover',
-    price: 2800,
-    category: 'Custom Designs',
-    image: 'https://images.unsplash.com/photo-1544967082-d9d25d867d66?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: '5',
-    name: 'Royal Blue Pattu Vasthram',
-    price: 5200,
-    category: 'God Clothing',
-    image: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: '6',
-    name: 'Silver Lotus Padukai',
-    price: 7500,
-    category: 'Ornaments',
-    image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: '7',
-    name: 'Pearl Harams Set',
-    price: 6800,
-    category: 'Ornaments',
-    image: 'https://images.unsplash.com/photo-1515562141207-7a18b5ce7142?auto=format&fit=crop&q=80&w=800',
-  },
-  {
-    id: '8',
-    name: 'Custom Mural Backdrop',
-    price: 15000,
-    category: 'Custom Designs',
-    image: 'https://images.unsplash.com/photo-1578321272176-b7bbc067985c?auto=format&fit=crop&q=80&w=800',
-  },
-];
+import { allProducts } from '../data/products';
 
 const Products: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -106,7 +14,7 @@ const Products: React.FC = () => {
   });
 
   return (
-    <div className="pt-24 md:pt-28 pb-16 px-5 md:px-6 max-w-7xl mx-auto overflow-hidden">
+    <div className="pt-10 md:pt-28 pb-16 px-5 md:px-6 max-w-7xl mx-auto overflow-hidden">
       {/* Header */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}

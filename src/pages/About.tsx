@@ -7,7 +7,7 @@ import { Globe, Trophy, ShieldCheck, Award } from 'lucide-react';
 
 const About: React.FC = () => {
   return (
-    <div className="pt-20 md:pt-28 pb-20">
+    <div className="pt-10 md:pt-28 pb-20">
       <motion.section 
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

@@ -151,7 +151,7 @@ const Projects: React.FC = () => {
   }, [modalData]);
 
   return (
-    <div className="pt-24 md:pt-32 pb-20 px-5 md:px-6 max-w-7xl mx-auto min-h-screen">
+    <div className="pt-14 md:pt-32 pb-20 px-5 md:px-6 max-w-7xl mx-auto min-h-screen">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

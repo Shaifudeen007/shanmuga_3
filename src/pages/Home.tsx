@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { X, Award, ShieldCheck, Sparkles, IndianRupee, Clock, Factory, Globe, ThumbsUp, Star, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 import CountingNumber from '../components/CountingNumber';
+import { allProducts } from '../data/products';
 
 const heroImages = [
   '/assets/hero-new-1.jpg',
@@ -19,12 +20,7 @@ const productCategories = [
   { name: 'Velvet Stone work', image: '/assets/cat-5.png' },
 ];
 
-const featuredProducts = [
-  { id: 1, name: 'Sacred Peacock Crown', image: '/assets/p1.jpg' },
-  { id: 2, name: 'Pearl Velvet Ornaments', image: '/assets/p2.jpg' },
-  { id: 3, name: 'Divine Gold Kavacham', image: '/assets/p3.jpg' },
-  { id: 4, name: 'Royal Velvet Alankaram', image: '/assets/p4.jpg' }
-];
+const featuredProducts = allProducts.slice(0, 4);
 
 
 const Home: React.FC = () => {
@@ -328,9 +324,8 @@ const Home: React.FC = () => {
                 transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
                 whileHover={{ y: -8 }}
                 className={`group cursor-pointer ${i === 4 ? 'col-span-2 sm:col-span-1 lg:col-span-1 mx-auto w-1/2 sm:w-full' : ''}`}
-                onClick={() => openModal(productCategories.map(c => c.image), i)}
               >
-                <div className="relative group">
+                <Link to="/products" className="block relative group">
                   {/* Background Pulse Glow Layer */}
                   <motion.div 
                     animate={{ 
@@ -348,13 +343,13 @@ const Home: React.FC = () => {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
-                      <span className="text-primary font-bold text-xs tracking-widest uppercase">Explore Category</span>
+                      <span className="text-primary font-bold text-xs tracking-widest uppercase">Explore Items</span>
                     </div>
                   </div>
                   <h3 className="text-center font-headline font-bold text-sm md:text-base text-on-surface-variant dark:text-white group-hover:text-primary transition-colors leading-tight">
                     {cat.name}
                   </h3>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -408,9 +403,8 @@ const Home: React.FC = () => {
                 transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
                 whileHover={{ y: -10 }}
                 className="group cursor-pointer w-full max-w-[260px] md:max-w-[280px] mx-auto"
-                onClick={() => openModal(featuredProducts.map(p => p.image), i)}
               >
-                <div className="relative group">
+                <Link to={`/product/${product.id}`} className="block relative group">
                   {/* Background Pulse Glow Layer */}
                   <motion.div 
                     animate={{ 
@@ -431,26 +425,23 @@ const Home: React.FC = () => {
                     
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
-                      <button className="bg-primary text-on-primary px-4 py-2 rounded-lg font-bold text-[10px] tracking-widest uppercase hover:bg-tertiary hover:text-on-tertiary transition-colors shadow-lg">
-                        View Product
-                      </button>
+                      <div className="bg-primary text-on-primary px-4 py-2 rounded-lg font-bold text-[10px] tracking-widest uppercase hover:bg-tertiary hover:text-on-tertiary transition-colors shadow-lg">
+                        View Item
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Content */}
-                <div className="space-y-1 text-center md:text-left px-2">
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="text-[9px] uppercase font-bold tracking-widest text-tertiary">Limited</span>
-                    <span className="text-on-surface-variant text-[8px]">Artifact {product.id}</span>
+                  {/* Content */}
+                  <div className="space-y-1 text-center md:text-left px-2">
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-[9px] uppercase font-bold tracking-widest text-tertiary">Exclusive</span>
+                      <span className="text-on-surface-variant text-[8px]">Handcrafted #{product.id}</span>
+                    </div>
+                    <h3 className="text-sm md:text-base font-headline font-bold text-on-surface dark:text-white group-hover:text-primary transition-colors line-clamp-1">
+                      {product.name}
+                    </h3>
                   </div>
-                  <h3 className="text-sm md:text-base font-headline font-bold text-on-surface dark:text-white group-hover:text-primary transition-colors line-clamp-1">
-                    {product.name}
-                  </h3>
-                  <p className="text-on-surface-variant/70 text-[10px] font-light">
-                    Hand-crafted digital essence.
-                  </p>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -707,13 +698,15 @@ const Home: React.FC = () => {
                 <MessageCircle size={20} />
                 Join WhatsApp Group
               </motion.a>
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-full border-2 border-white text-white font-bold text-base transition-all"
-              >
-                View Collection
-              </motion.button>
+              <Link to="/products">
+                <motion.button 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 rounded-full border-2 border-white text-white font-bold text-base transition-all cursor-pointer"
+                >
+                  View Collection
+                </motion.button>
+              </Link>
             </div>
           </motion.div>
         </div>
