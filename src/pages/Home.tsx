@@ -20,7 +20,19 @@ const productCategories = [
   { name: 'Velvet Stone work', image: '/assets/cat-5.png' },
 ];
 
-const featuredProducts = allProducts.slice(0, 4);
+const featuredImages = [
+  '/Featured/WhatsApp Image 2026-04-18 at 11.47.27 PM.jpeg',
+  '/Featured/WhatsApp Image 2026-04-18 at 11.47.28 PM.jpeg',
+  '/Featured/WhatsApp Image 2026-04-18 at 11.47.30 PM.jpeg',
+  '/Featured/WhatsApp Image 2026-04-18 at 11.47.31 PM.jpeg',
+];
+
+const featuredProducts = [
+  { id: 'f1', name: 'Masterpiece Alankaram', image: featuredImages[0] },
+  { id: 'f2', name: 'Divine Ornaments Set', image: featuredImages[1] },
+  { id: 'f3', name: 'Sacred Deity Throne', image: featuredImages[2] },
+  { id: 'f4', name: 'Traditional Muthangi', image: featuredImages[3] },
+];
 
 
 const Home: React.FC = () => {
@@ -28,6 +40,10 @@ const Home: React.FC = () => {
   const [modalData, setModalData] = useState<{ images: string[], index: number } | null>(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
+
+  const openModal = (images: string[], index: number) => {
+    setModalData({ images, index });
+  };
 
   const nextImage = (e?: React.MouseEvent) => {
     e?.stopPropagation();
@@ -400,8 +416,9 @@ const Home: React.FC = () => {
                 transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
                 whileHover={{ y: -10 }}
                 className="group cursor-pointer w-full max-w-[260px] md:max-w-[280px] mx-auto"
+                onClick={() => openModal(featuredImages, i)}
               >
-                <Link to={`/product/${product.id}`} className="block relative group">
+                <div className="relative group">
                   {/* Background Pulse Glow Layer */}
                   <motion.div 
                     animate={{ 
@@ -423,7 +440,7 @@ const Home: React.FC = () => {
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
                       <div className="bg-primary text-on-primary px-4 py-2 rounded-lg font-bold text-[10px] tracking-widest uppercase hover:bg-tertiary hover:text-on-tertiary transition-colors shadow-lg">
-                        View Item
+                        View Photo
                       </div>
                     </div>
                   </div>
@@ -432,13 +449,13 @@ const Home: React.FC = () => {
                   <div className="space-y-1 text-center md:text-left px-2">
                     <div className="flex justify-between items-center mb-1">
                       <span className="text-[9px] uppercase font-bold tracking-widest text-tertiary">Exclusive</span>
-                      <span className="text-on-surface-variant text-[8px]">Handcrafted #{product.id}</span>
+                      <span className="text-on-surface-variant text-[8px]">Featured Artifact</span>
                     </div>
                     <h3 className="text-sm md:text-base font-headline font-bold text-on-surface dark:text-white group-hover:text-primary transition-colors line-clamp-1">
                       {product.name}
                     </h3>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>

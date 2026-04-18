@@ -31,20 +31,44 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex justify-center lg:justify-start gap-4">
               {[
-                { Icon: Instagram, link: "https://www.instagram.com/reel/DWrHc_Rkh0z/?igsh=YnN1ajBtM25ramdj" },
-                { Icon: Facebook, link: "https://www.facebook.com/share/18GERuQyQv/" },
-                { Icon: Share2, link: "https://shanmugacliparts.com" }
-              ].map((social, i) => (
-                <a 
-                  key={i} 
-                  href={social.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-[#8f0f07]/5 border border-[#8f0f07] flex items-center justify-center text-[#8f0f07] hover:bg-[#8f0f07] hover:text-white hover:border-[#8f0f07] hover:-translate-y-1 transition-all duration-300"
-                >
-                  <social.Icon size={18} />
-                </a>
-              ))}
+                { Icon: Instagram, link: "https://www.instagram.com/reel/DWrHc_Rkh0z/?igsh=YnN1ajBtM25ramdj", type: 'social' },
+                { Icon: Facebook, link: "https://www.facebook.com/share/18GERuQyQv/", type: 'social' },
+                { Icon: Share2, link: "https://shanmugacliparts.com", type: 'share' }
+              ].map((social, i) => {
+                if (social.type === 'social') {
+                  return (
+                    <a 
+                      key={i} 
+                      href={social.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 rounded-full bg-[#8f0f07]/5 border border-[#8f0f07] flex items-center justify-center text-[#8f0f07] hover:bg-[#8f0f07] hover:text-white hover:border-[#8f0f07] hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <social.Icon size={18} />
+                    </a>
+                  );
+                } else {
+                  return (
+                    <button 
+                      key={i} 
+                      onClick={() => {
+                        if (navigator.share) {
+                          navigator.share({
+                            title: 'Shanmuga Clip Arts',
+                            text: 'Discover divine craftsmanship and traditional deity attire at Shanmuga Clip Arts.',
+                            url: window.location.href,
+                          }).catch(() => {});
+                        } else {
+                          window.open(social.link, '_blank');
+                        }
+                      }}
+                      className="w-10 h-10 rounded-full bg-[#8f0f07]/5 border border-[#8f0f07] flex items-center justify-center text-[#8f0f07] hover:bg-[#8f0f07] hover:text-white hover:border-[#8f0f07] hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                    >
+                      <social.Icon size={18} />
+                    </button>
+                  );
+                }
+              })}
             </div>
           </div>
 
