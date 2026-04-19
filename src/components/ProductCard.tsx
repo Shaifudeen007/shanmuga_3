@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 export interface Product {
   id: string;
   name: string;
-  price: number;
   category: string;
   image: string;
   description?: string;
@@ -62,9 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <h3 className="font-headline text-xs md:text-base font-bold text-primary dark:text-white mb-1 md:mb-2 group-hover:text-secondary transition-colors line-clamp-2">
             {product.name}
           </h3>
-          <p className="text-primary/70 font-headline font-bold text-xs md:text-base">
-            ₹{product.price.toLocaleString()}
-          </p>
+
         </div>
       </div>
     </motion.div>

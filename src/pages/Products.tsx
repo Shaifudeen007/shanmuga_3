@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { Search, SearchX } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -6,10 +7,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { allProducts } from '../data/products';
 
 const Products: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || 'All');
+
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    if (categoryParam) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [searchParams]);
+
+  const categories = ['All', ...new Set(allProducts.map(p => p.category))];
 
   const filteredProducts = allProducts.filter(p => {
-    return p.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || p.category === selectedCategory;
+    return matchesSearch && matchesCategory;
   });
 
   return (
@@ -42,7 +56,8 @@ const Products: React.FC = () => {
           </p>
         </div>
         
-        <div className="w-full flex justify-center mt-4">
+        <div className="w-full flex flex-col items-center gap-8 mt-4">
+          {/* Search bar */}
           <div className="relative group w-full sm:w-auto">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface/40 group-focus-within:text-primary transition-colors" size={18} />
             <input
@@ -52,6 +67,26 @@ const Products: React.FC = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="bg-surface-container-low border border-outline-variant/30 rounded-2xl py-3.5 pl-12 pr-6 w-full sm:w-96 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm"
             />
+          </div>
+
+          {/* Category Chips */}
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => {
+                  setSelectedCategory(cat);
+                  setSearchParams({ category: cat });
+                }}
+                className={`px-6 py-2 rounded-full text-xs md:text-sm font-medium transition-all duration-300 border ${
+                  selectedCategory === cat
+                    ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20 scale-105'
+                    : 'bg-white/50 text-on-surface-variant border-outline-variant/30 hover:border-primary/50 hover:bg-primary/5'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
         </div>
       </motion.div>

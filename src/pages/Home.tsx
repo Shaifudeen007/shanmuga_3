@@ -12,11 +12,11 @@ const heroImages = [
 ];
 
 const productCategories = [
-  { name: 'Traditional Muthangi work', image: '/assets/cat-1.jpg' },
-  { name: 'Crown', image: '/assets/cat-2.jpg' },
-  { name: 'Rathana Kavasam', image: '/assets/cat-3.jpg' },
-  { name: 'Rajaalangaram', image: '/assets/cat-4.jpg' },
-  { name: 'Velvet Stone work', image: '/assets/cat-5.png' },
+  { name: 'Traditional Muthangi work', filter: 'Muthangi Work', image: '/assets/cat-1.jpg' },
+  { name: 'Crown', filter: 'Kiridam', image: '/assets/cat-2.jpg' },
+  { name: 'Rathana Kavasam', filter: 'Synthetic Rathanagi', image: '/assets/cat-3.jpg' },
+  { name: 'Rajaalangaram', filter: 'Rajaalangaram', image: '/assets/cat-4.jpg' },
+  { name: 'Customised Design', filter: 'Customised Design', image: '/assets/cat-5.png' },
 ];
 
 const featuredImages = [
@@ -27,10 +27,10 @@ const featuredImages = [
 ];
 
 const featuredProducts = [
-  { id: 'f1', name: 'Masterpiece Alankaram', image: featuredImages[0] },
-  { id: 'f2', name: 'Divine Ornaments Set', image: featuredImages[1] },
-  { id: 'f3', name: 'Sacred Deity Throne', image: featuredImages[2] },
-  { id: 'f4', name: 'Traditional Muthangi', image: featuredImages[3] },
+  { id: 'f1', name: 'Saya Kondai Fitting Stone Kiridam', image: featuredImages[0] },
+  { id: 'f2', name: 'Savari Kondai Kiridam', image: featuredImages[1] },
+  { id: 'f3', name: 'Saya Kondai', image: featuredImages[2] },
+  { id: 'f4', name: 'Ambal Rathnangi', image: featuredImages[3] },
 ];
 
 
@@ -174,7 +174,7 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background dark:via-transparent dark:to-background/80"></div>
         <div className="container mx-auto px-6 md:px-12 lg:px-24 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-20 items-center relative z-10 h-full">
           {/* Image carousel first on mobile */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -184,41 +184,41 @@ const Home: React.FC = () => {
               {heroImages.map((src, i) => {
                 const diff = (i - currentHeroIndex + heroImages.length) % heroImages.length;
                 let position: 'center' | 'left' | 'right' | 'hidden' = 'hidden';
-                
+
                 if (diff === 0) position = 'center';
                 else if (diff === 1) position = 'right';
                 else if (diff === heroImages.length - 1) position = 'left';
 
                 const variants = {
-                  center: { 
-                    x: 0, 
-                    scale: 1, 
-                    zIndex: 30, 
-                    opacity: 1, 
+                  center: {
+                    x: 0,
+                    scale: 1,
+                    zIndex: 30,
+                    opacity: 1,
                     rotateY: 0,
                     filter: 'blur(0px) brightness(1)'
                   },
-                  left: { 
-                    x: '-25%', 
-                    scale: 0.85, 
-                    zIndex: 20, 
-                    opacity: 0.4, 
+                  left: {
+                    x: '-25%',
+                    scale: 0.85,
+                    zIndex: 20,
+                    opacity: 0.4,
                     rotateY: 20,
                     filter: 'blur(2px) brightness(0.7)'
                   },
-                  right: { 
-                    x: '25%', 
-                    scale: 0.85, 
-                    zIndex: 20, 
-                    opacity: 0.4, 
+                  right: {
+                    x: '25%',
+                    scale: 0.85,
+                    zIndex: 20,
+                    opacity: 0.4,
                     rotateY: -20,
                     filter: 'blur(2px) brightness(0.7)'
                   },
-                  hidden: { 
-                    x: 0, 
-                    scale: 0.5, 
-                    zIndex: 10, 
-                    opacity: 0, 
+                  hidden: {
+                    x: 0,
+                    scale: 0.5,
+                    zIndex: 10,
+                    opacity: 0,
                     rotateY: 0,
                     filter: 'blur(10px) brightness(0)'
                   }
@@ -229,25 +229,25 @@ const Home: React.FC = () => {
                     key={i}
                     animate={position}
                     variants={variants}
-                    transition={{ 
-                      duration: 0.8, 
-                      ease: [0.4, 0, 0.2, 1] 
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.4, 0, 0.2, 1]
                     }}
                     className="absolute w-[280px] h-[390px] xs:w-[300px] xs:h-[420px] sm:w-[340px] sm:h-[480px] md:w-[400px] md:h-[560px] rounded-[2.5rem] md:rounded-[3rem] overflow-hidden border-2 border-tertiary/30 shadow-[0_30px_70px_rgba(0,0,0,0.6)] bg-surface-container-low"
                   >
-                    <img 
-                      src={src} 
-                      className="w-full h-full object-cover select-none pointer-events-none" 
-                      alt={`Sacred Artwork ${i + 1}`} 
+                    <img
+                      src={src}
+                      className="w-full h-full object-cover select-none pointer-events-none"
+                      alt={`Sacred Artwork ${i + 1}`}
                       draggable={false}
                     />
-                    
+
                     {/* Inner highlight for premium feel */}
                     <div className="absolute inset-0 border border-white/10 rounded-[2.2rem] md:rounded-[2.5rem] pointer-events-none" />
-                    
+
                     {/* Bottom pulse glow for center image */}
                     {position === 'center' && (
-                      <motion.div 
+                      <motion.div
                         animate={{ opacity: [0.2, 0.5, 0.2] }}
                         transition={{ duration: 3, repeat: Infinity }}
                         className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-tertiary/40 to-transparent pointer-events-none"
@@ -260,7 +260,7 @@ const Home: React.FC = () => {
           </motion.div>
 
           {/* Content second on mobile */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -290,7 +290,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Product Categories Section */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -299,7 +299,7 @@ const Home: React.FC = () => {
       >
         <div className="container mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center mb-8 md:mb-10 space-y-4">
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -308,7 +308,7 @@ const Home: React.FC = () => {
             >
               Our Specialties
             </motion.span>
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -317,7 +317,7 @@ const Home: React.FC = () => {
             >
               Product Categories
             </motion.h2>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, width: 0 }}
               whileInView={{ opacity: 1, width: 60 }}
               viewport={{ once: true }}
@@ -337,22 +337,22 @@ const Home: React.FC = () => {
                 whileHover={{ y: -8 }}
                 className={`group cursor-pointer ${i === 4 ? 'col-span-2 sm:col-span-1 lg:col-span-1 mx-auto w-1/2 sm:w-full' : ''}`}
               >
-                <Link to="/products" className="block relative group">
+                <Link to={`/products?category=${encodeURIComponent(cat.filter)}`} className="block relative group">
                   {/* Background Pulse Glow Layer */}
-                  <motion.div 
-                    animate={{ 
+                  <motion.div
+                    animate={{
                       opacity: [0.1, 0.4, 0.1],
                       scale: [0.9, 1.1, 0.9]
                     }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     className="absolute -inset-4 bg-primary/20 blur-[30px] rounded-full pointer-events-none z-0 dark:hidden"
                   />
-                  
+
                   <div className="glare-card relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-5 shadow-xl transition-all duration-500 group-hover:shadow-primary/20 border border-primary/20 dark:border-outline-variant/10 glow-maroon-pulse dark:[animation:none] dark:shadow-none backdrop-blur-md bg-surface-container-low/40 z-10">
-                    <img 
-                      src={cat.image} 
-                      alt={cat.name} 
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                    <img
+                      src={cat.image}
+                      alt={cat.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
                       <span className="text-primary font-bold text-xs tracking-widest uppercase">Explore Items</span>
@@ -369,7 +369,7 @@ const Home: React.FC = () => {
       </motion.section>
 
       {/* Featured Products Section */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -378,7 +378,7 @@ const Home: React.FC = () => {
       >
         <div className="container mx-auto px-4 md:px-8 relative z-10">
           <div className="text-center mb-12 md:mb-14 space-y-4">
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -387,7 +387,7 @@ const Home: React.FC = () => {
             >
               Curated Products
             </motion.span>
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -396,7 +396,7 @@ const Home: React.FC = () => {
             >
               Featured Products
             </motion.h2>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, width: 0 }}
               whileInView={{ opacity: 1, width: 80 }}
               viewport={{ once: true }}
@@ -405,7 +405,7 @@ const Home: React.FC = () => {
             />
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 max-w-7xl mx-auto">
             {featuredProducts.map((product, i) => (
               <motion.div
                 key={product.id}
@@ -413,43 +413,43 @@ const Home: React.FC = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
-                whileHover={{ y: -10 }}
-                className="group cursor-pointer w-full max-w-[200px] md:max-w-[220px] mx-auto"
+                whileHover={{ y: -12 }}
+                className="group cursor-pointer w-full mx-auto"
                 onClick={() => openModal(featuredImages, i)}
               >
                 <div className="relative group">
                   {/* Background Pulse Glow Layer */}
-                  <motion.div 
-                    animate={{ 
+                  <motion.div
+                    animate={{
                       opacity: [0.1, 0.4, 0.1],
                       scale: [0.9, 1.1, 0.9]
                     }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -inset-4 bg-primary/20 blur-[30px] rounded-full pointer-events-none z-0 dark:hidden"
+                    className="absolute -inset-6 bg-primary/20 blur-[40px] rounded-full pointer-events-none z-0 dark:hidden"
                   />
-                  
+
                   {/* Product Image Box */}
-                  <div className="glare-card relative aspect-square rounded-xl md:rounded-[1.5rem] overflow-hidden mb-3 md:mb-5 shadow-xl transition-all duration-500 group-hover:shadow-primary/20 border border-primary/20 dark:border-outline-variant/10 glow-maroon-pulse dark:[animation:none] dark:shadow-none backdrop-blur-md bg-surface-container-low/40 p-1.5 md:p-2 z-10">
-                    <img 
-                      src={product.image} 
+                  <div className="glare-card relative aspect-square rounded-[2rem] overflow-hidden mb-6 shadow-2xl transition-all duration-500 group-hover:shadow-primary/30 border border-primary/20 dark:border-outline-variant/10 glow-maroon-pulse dark:[animation:none] dark:shadow-none backdrop-blur-md bg-surface-container-low/40 p-2.5 z-10">
+                    <img
+                      src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 rounded-lg md:rounded-2xl" 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 rounded-[1.5rem]"
                     />
-                    
+
                     {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-4">
-                      <div className="bg-primary text-on-primary px-3 py-1.5 rounded-lg font-bold text-[8px] tracking-widest uppercase hover:bg-tertiary hover:text-on-tertiary transition-colors shadow-lg">
-                        View Photo
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
+                      <div className="bg-white text-black px-4 py-2 rounded-xl font-bold text-[10px] tracking-[0.2em] uppercase hover:bg-primary hover:text-on-primary transition-all shadow-xl group-active:scale-95">
+                        View Details
                       </div>
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="space-y-0.5 text-center md:text-left px-1">
-                    <div className="flex justify-between items-center mb-0.5">
-                      <span className="text-[8px] uppercase font-bold tracking-widest text-tertiary">Exclusive</span>
+                  <div className="space-y-1.5 text-center px-4">
+                    <div className="flex justify-center items-center">
+                      <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-tertiary/80">Premium Collection</span>
                     </div>
-                    <h3 className="text-xs md:text-sm font-headline font-bold text-on-surface dark:text-white group-hover:text-primary transition-colors line-clamp-1">
+                    <h3 className="text-lg md:text-xl font-headline font-bold text-on-surface dark:text-white group-hover:text-primary transition-colors">
                       {product.name}
                     </h3>
                   </div>
@@ -461,7 +461,7 @@ const Home: React.FC = () => {
       </motion.section>
 
       {/* Why Choose Us Section */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -470,7 +470,7 @@ const Home: React.FC = () => {
       >
         <div className="container mx-auto px-8 relative z-10 mb-12">
           <div className="text-center space-y-4">
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -479,7 +479,7 @@ const Home: React.FC = () => {
             >
               Our Commitment
             </motion.span>
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -488,7 +488,7 @@ const Home: React.FC = () => {
             >
               Why Choose Us
             </motion.h2>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, width: 0 }}
               whileInView={{ opacity: 1, width: 80 }}
               viewport={{ once: true }}
@@ -502,7 +502,7 @@ const Home: React.FC = () => {
           {/* Left Column - First 4 items */}
           <div className="space-y-10 md:space-y-12">
             {whyChooseUsItems.slice(0, 4).map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -524,7 +524,7 @@ const Home: React.FC = () => {
           {/* Right Column - Remaining 4 items */}
           <div className="space-y-10 md:space-y-12">
             {whyChooseUsItems.slice(4).map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -546,7 +546,7 @@ const Home: React.FC = () => {
       </motion.section>
 
       {/* Testimonials Section - Redesigned */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -555,7 +555,7 @@ const Home: React.FC = () => {
       >
         <div className="container mx-auto px-8 relative z-10">
           <div className="text-center mb-12 md:mb-16 space-y-4">
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -574,11 +574,10 @@ const Home: React.FC = () => {
                   key={i}
                   onClick={() => setActiveTestimonial(i)}
                   onMouseEnter={() => setActiveTestimonial(i)}
-                  className={`group relative flex items-center gap-3 p-3 md:p-3.5 rounded-xl transition-all duration-500 text-left border-none focus:outline-none shrink-0 lg:shrink-1 ${
-                    activeTestimonial === i 
-                    ? 'bg-primary shadow-xl shadow-primary/20 lg:-translate-x-4' 
-                    : 'bg-surface-container hover:bg-surface-container-high'
-                  }`}
+                  className={`group relative flex items-center gap-3 p-3 md:p-3.5 rounded-xl transition-all duration-500 text-left border-none focus:outline-none shrink-0 lg:shrink-1 ${activeTestimonial === i
+                      ? 'bg-primary shadow-xl shadow-primary/20 lg:-translate-x-4'
+                      : 'bg-surface-container hover:bg-surface-container-high'
+                    }`}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
@@ -586,20 +585,18 @@ const Home: React.FC = () => {
                 >
 
                   <div className="whitespace-nowrap lg:whitespace-normal">
-                    <h4 className={`font-headline font-bold text-xs md:text-sm transition-colors ${
-                      activeTestimonial === i ? 'text-white' : 'text-on-surface'
-                    }`}>
+                    <h4 className={`font-headline font-bold text-xs md:text-sm transition-colors ${activeTestimonial === i ? 'text-white' : 'text-on-surface'
+                      }`}>
                       {t.name}
                     </h4>
-                    <p className={`text-[8px] md:text-[10px] uppercase tracking-widest transition-colors ${
-                      activeTestimonial === i ? 'text-white/70' : 'text-on-surface-variant'
-                    }`}>
+                    <p className={`text-[8px] md:text-[10px] uppercase tracking-widest transition-colors ${activeTestimonial === i ? 'text-white/70' : 'text-on-surface-variant'
+                      }`}>
                       {t.location}
                     </p>
                   </div>
-                  
+
                   {activeTestimonial === i && (
-                    <motion.div 
+                    <motion.div
                       layoutId="active-indicator"
                       className="hidden lg:block absolute right-4 w-2 h-2 rounded-full bg-white shadow-[0_0_10px_white]"
                     />
@@ -611,7 +608,7 @@ const Home: React.FC = () => {
             {/* Right Side: Active Testimonial Content */}
             <div className="lg:col-span-8 relative min-h-[300px] flex items-center">
               <div className="absolute inset-0 bg-primary/5 rounded-[3rem] blur-3xl opacity-50 z-0"></div>
-              
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTestimonial}
@@ -622,17 +619,17 @@ const Home: React.FC = () => {
                   className="relative z-10 w-full bg-stone-900 dark:bg-stone-900/80 backdrop-blur-md p-6 md:p-10 rounded-3xl border border-white/10 shadow-2xl"
                 >
                   <Star className="text-tertiary mb-4 w-8 h-8 fill-tertiary/20" strokeWidth={1} />
-                  
+
                   <div className="flex gap-1 mb-6">
                     {[1, 2, 3, 4, 5].map((s) => (
                       <Star key={s} size={20} className="text-amber-500 fill-amber-500" />
                     ))}
                   </div>
-                  
+
                   <blockquote className="text-lg md:text-2xl font-headline italic font-bold text-white leading-tight mb-6">
                     "{testimonials[activeTestimonial].content}"
                   </blockquote>
-                  
+
                   <div className="flex items-center gap-4 pt-6 border-t border-outline-variant/10">
 
                     <div>
@@ -650,7 +647,7 @@ const Home: React.FC = () => {
           </div>
 
           {/* 1000+ Happy Customers Section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -671,7 +668,7 @@ const Home: React.FC = () => {
       </motion.section>
 
       {/* CTA Section */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -681,10 +678,10 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/p6.png')]" />
         <div className="max-w-4xl mx-auto text-center relative z-10 px-8">
           <motion.div
-             initial={{ opacity: 0, scale: 0.9, y: 30 }}
-             whileInView={{ opacity: 1, scale: 1, y: 0 }}
-             viewport={{ once: true }}
-             transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
             <motion.div
               animate={{ scale: [1, 1.1, 1] }}
@@ -699,7 +696,7 @@ const Home: React.FC = () => {
               Stay updated on new designs and traditional artistry previews.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <motion.a 
+              <motion.a
                 href="https://wa.me/919489686435"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -711,7 +708,7 @@ const Home: React.FC = () => {
                 Join WhatsApp Group
               </motion.a>
               <Link to="/products">
-                <motion.button 
+                <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 rounded-full border-2 border-white text-white font-bold text-base transition-all cursor-pointer"
@@ -733,7 +730,7 @@ const Home: React.FC = () => {
             className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 bg-black/40 backdrop-blur-3xl"
           >
             {/* Close Button - Premium Glassmorphic Design */}
-            <motion.button 
+            <motion.button
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
@@ -746,7 +743,7 @@ const Home: React.FC = () => {
 
             {/* Navigation Buttons for Carousel */}
             <div className="fixed inset-y-0 left-4 md:left-12 flex items-center z-[105]">
-              <button 
+              <button
                 onClick={prevImage}
                 className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white rounded-full transition-all backdrop-blur-md border border-white/10 group active:scale-90"
               >
@@ -755,7 +752,7 @@ const Home: React.FC = () => {
             </div>
 
             <div className="fixed inset-y-0 right-4 md:right-12 flex items-center z-[105]">
-              <button 
+              <button
                 onClick={nextImage}
                 className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white rounded-full transition-all backdrop-blur-md border border-white/10 group active:scale-90"
               >
@@ -766,8 +763,8 @@ const Home: React.FC = () => {
             {/* Pagination Indicator */}
             <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[105] flex gap-2">
               {modalData.images.map((_, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className={`h-1.5 transition-all duration-500 rounded-full ${modalData.index === i ? 'w-8 bg-primary' : 'w-2 bg-white/30'}`}
                 />
               ))}
@@ -782,9 +779,9 @@ const Home: React.FC = () => {
               className="relative max-w-5xl w-full h-full flex items-center justify-center cursor-zoom-out"
               onClick={() => setModalData(null)}
             >
-              <img 
-                src={modalData.images[modalData.index]} 
-                alt="Product Full View" 
+              <img
+                src={modalData.images[modalData.index]}
+                alt="Product Full View"
                 className="max-w-full max-h-[80vh] md:max-h-[85vh] object-contain rounded-[1.5rem] shadow-[0_0_80px_rgba(255,180,168,0.15)] border border-white/5"
                 onClick={(e) => e.stopPropagation()}
               />

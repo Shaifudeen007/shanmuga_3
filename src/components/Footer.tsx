@@ -101,7 +101,7 @@ const Footer: React.FC = () => {
               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0 w-8 h-1 bg-[#8f0f07] rounded-full"></span>
             </h4>
             <ul className="space-y-4">
-              {['God Clothing', 'Divine Ornaments', 'Custom Designs', 'Sacred Relics'].map((item) => (
+              {['God Clothing', 'Customised Design', 'Custom Designs', 'Sacred Relics'].map((item) => (
                 <li key={item}>
                   <Link to="/products" className="text-[#8f0f07] hover:translate-x-2 transition-all duration-300 flex items-center justify-center lg:justify-start gap-2 group text-sm font-medium">
                     <span className="w-1 h-1 rounded-full bg-[#8f0f07] opacity-0 group-hover:opacity-100 transition-opacity"></span>

@@ -1,683 +1,622 @@
 export interface Product {
   id: string;
   name: string;
-  price: number;
   category: string;
   image: string;
   description?: string;
+  material?: string;
+  size?: string;
+  waterResistance?: string;
+  backImage?: string;
 }
 
 export const allProducts: Product[] = [
   {
     "id": "1",
-    "name": "Divine Artifact #1",
-    "price": 12000,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.39.02%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "2",
-    "name": "Divine Artifact #2",
-    "price": 12250,
-    "category": "Ornaments",
+    "name": "Plain Sridevi Kiridam Perumal Sridevi Bhoodevi Set",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.39.09%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual purpose Set. Based on the custom size we can make the order. Crafted with high-quality and premium materials.",
+    "material": "Fiber, gold silicon, rexin stone, and velvet",
+    "size": "2.4 - 4 inches (Customizable)",
+    "waterResistance": "Yes",
+    "backImage": "/Products/WhatsApp%20Image%202026-04-18%20at%207.39.02%20PM.jpeg"
   },
+
   {
     "id": "3",
-    "name": "Divine Artifact #3",
-    "price": 12500,
-    "category": "Ornaments",
+    "name": "Savari Pagai Kiridam",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.39.10%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "4",
-    "name": "Divine Artifact #4",
-    "price": 12750,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.39.11%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "backImage": "/Products/WhatsApp%20Image%202026-04-18%20at%207.39.11%20PM.jpeg",
+    "description": "Customise design (color & size). Made on order. High-quality traditional kiridam for deities.",
+    "size": "3 to 3.5 inch dia",
+    "waterResistance": "Yes"
   },
   {
     "id": "5",
-    "name": "Divine Artifact #5",
-    "price": 13000,
-    "category": "Ornaments",
+    "name": "Pandiyen Kondai Set",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.39.15%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Perumal thayar's set. Thayar kondai Dual use. Customise design (color & size). Made on order.",
+    "size": "3\" center, 2\" side",
+    "waterResistance": "Yes"
   },
   {
     "id": "6",
-    "name": "Divine Artifact #6",
-    "price": 13250,
-    "category": "Ornaments",
+    "name": "Reguler Round Kiridam",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.39.16%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "7",
-    "name": "Divine Artifact #7",
-    "price": 13500,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.39.18%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "backImage": "/Products/WhatsApp%20Image%202026-04-18%20at%207.39.18%20PM.jpeg",
+    "description": "Dual use. Customise design (color & size). Made on order. A staple traditional round kiridam.",
+    "size": "2.5 to 4 inch dia",
+    "waterResistance": "Yes"
   },
   {
     "id": "8",
-    "name": "Divine Artifact #8",
-    "price": 13750,
-    "category": "Ornaments",
+    "name": "Customized Design",
+    "category": "Customised Design",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.39.29%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "High-quality customized divine ornaments. Designed based on client specifications. Crafted with premium stones and traditional details."
   },
   {
     "id": "9",
-    "name": "Divine Artifact #9",
-    "price": 14000,
-    "category": "Ornaments",
+    "name": "Customized Design",
+    "category": "Customised Design",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.40.46%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "10",
-    "name": "Divine Artifact #10",
-    "price": 14250,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.40.46%20PM%20%282%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "High-quality customized divine ornaments. Designed based on client specifications. Crafted with premium stones and traditional details."
   },
   {
     "id": "11",
-    "name": "Divine Artifact #11",
-    "price": 14500,
-    "category": "Ornaments",
+    "name": "Customized Design",
+    "category": "Customised Design",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.40.46%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "High-quality customized divine ornaments. Designed based on client specifications. Crafted with premium stones and traditional details."
   },
   {
     "id": "12",
-    "name": "Divine Artifact #12",
-    "price": 14750,
-    "category": "Ornaments",
+    "name": "Thoparam Kiridam Set",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.40.47%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "13",
-    "name": "Divine Artifact #13",
-    "price": 15000,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.40.47%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "backImage": "/Products/WhatsApp%20Image%202026-04-18%20at%207.40.47%20PM.jpeg",
+    "description": "Dual use. Customise design (color & size). Made on order. Elegant traditional kiridam set.",
+    "size": "2.5 to 4 inch dia",
+    "waterResistance": "Yes"
   },
   {
     "id": "14",
-    "name": "Divine Artifact #14",
-    "price": 15250,
-    "category": "Ornaments",
+    "name": "Round Kondai Set",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.40.48%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Classically designed round kondai.",
+    "size": "2.5 to 4 dia",
+    "waterResistance": "Yes"
   },
   {
     "id": "15",
-    "name": "Divine Artifact #15",
-    "price": 15500,
-    "category": "Ornaments",
+    "name": "Customized Design",
+    "category": "Customised Design",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.40.49%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "High-quality customized divine ornaments. Designed based on client specifications. Crafted with premium stones and traditional details."
   },
   {
     "id": "16",
-    "name": "Divine Artifact #16",
-    "price": 15750,
-    "category": "Ornaments",
+    "name": "Kili Sayakondai",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.40.51%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Intricately crafted kili sayakondai.",
+    "size": "2.5 to 3 inch dia",
+    "waterResistance": "Yes"
   },
   {
     "id": "17",
-    "name": "Divine Artifact #17",
-    "price": 16000,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.40.52%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "18",
-    "name": "Divine Artifact #18",
-    "price": 16250,
-    "category": "Ornaments",
+    "name": "Vengadathiri Kondai",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.40.53%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "19",
-    "name": "Divine Artifact #19",
-    "price": 16500,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.40.53%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "backImage": "/Products/WhatsApp%20Image%202026-04-18%20at%207.40.53%20PM.jpeg",
+    "description": "Dual use. Customise design (color & size). Made on order. Sacred Vengadathiri style kondai.",
+    "size": "3 to 4",
+    "waterResistance": "Yes"
   },
   {
     "id": "20",
-    "name": "Divine Artifact #20",
-    "price": 16750,
-    "category": "Ornaments",
+    "name": "Srinivasan Set Kiridam",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.07%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "21",
-    "name": "Divine Artifact #21",
-    "price": 17000,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.36%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "22",
-    "name": "Divine Artifact #22",
-    "price": 17250,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.37%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Beautiful Srinivasan style kiridam set.",
+    "size": "2.5 to 4 inch",
+    "waterResistance": "Yes"
   },
   {
     "id": "23",
-    "name": "Divine Artifact #23",
-    "price": 17500,
-    "category": "Ornaments",
+    "name": "Stight Kiridam 002",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.40%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Traditional straight kiridam set.",
+    "size": "2.5 to 4 inch",
+    "waterResistance": "Yes"
   },
   {
     "id": "24",
-    "name": "Divine Artifact #24",
-    "price": 17750,
-    "category": "Ornaments",
+    "name": "Stight Kiridam",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.41%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Sarangabani Perumal model. Dual use. Customise design (color & size). Made on order.",
+    "size": "2 inch to 4 inch dia",
+    "waterResistance": "Yes"
   },
   {
     "id": "25",
-    "name": "Divine Artifact #25",
-    "price": 18000,
-    "category": "Ornaments",
+    "name": "Alvar Kondai",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.42%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Traditional Alvar style kondai.",
+    "size": "2 inch to 4 inch dia",
+    "waterResistance": "Yes"
   },
   {
     "id": "26",
-    "name": "Divine Artifact #26",
-    "price": 18250,
-    "category": "Ornaments",
+    "name": "Thoparam Kiridam",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.43%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Egambaranathar model. Dual use. Customise design (color & size). Made on order.",
+    "size": "3 to 4",
+    "waterResistance": "Yes"
   },
   {
     "id": "27",
-    "name": "Divine Artifact #27",
-    "price": 18500,
-    "category": "Ornaments",
+    "name": "Thoparam",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.43%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Parthasarathy Perumal model. Dual use. Customise design (color & size). Made on order.",
+    "size": "3 to 4",
+    "waterResistance": "Yes"
   },
   {
     "id": "28",
-    "name": "Divine Artifact #28",
-    "price": 18750,
-    "category": "Ornaments",
+    "name": "Sayakondai",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.45%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Thayar model. Dual use. Customise design (color & size). Made on order.",
+    "size": "3 inch dia",
+    "waterResistance": "Yes"
   },
   {
     "id": "29",
-    "name": "Divine Artifact #29",
-    "price": 19000,
-    "category": "Ornaments",
+    "name": "Rajarajan Kondai",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.46%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Traditional Rajarajan style kondai. Customise design (color & size). Made on order.",
+    "size": "3 inch",
+    "waterResistance": "Yes"
   },
   {
     "id": "30",
-    "name": "Divine Artifact #30",
-    "price": 19250,
-    "category": "Ornaments",
+    "name": "Thirumala Round Kiridam Model",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.47%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Sacred Thirumala style round kiridam.",
+    "size": "3 inch 4",
+    "waterResistance": "Yes"
   },
   {
     "id": "31",
-    "name": "Divine Artifact #31",
-    "price": 19500,
-    "category": "Ornaments",
+    "name": "Ruby Sayakondai",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.49%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Adorned with beautiful ruby-like stones.",
+    "size": "2.5 inch dia 3 inch",
+    "waterResistance": "Yes"
   },
   {
     "id": "32",
-    "name": "Divine Artifact #32",
-    "price": 19750,
-    "category": "Ornaments",
+    "name": "Stight Kiridam 004",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.50%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Premium straight kiridam set.",
+    "size": "2 inch to 4 inch",
+    "waterResistance": "Yes"
   },
   {
     "id": "33",
-    "name": "Divine Artifact #33",
-    "price": 20000,
-    "category": "Ornaments",
+    "name": "Anamalaiyar Kondai",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.52%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "34",
-    "name": "Divine Artifact #34",
-    "price": 20250,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.52%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Inspired by Anamalaiyar traditions.",
+    "size": "2.5 to 4 inch dia",
+    "waterResistance": "Yes"
   },
   {
     "id": "35",
-    "name": "Divine Artifact #35",
-    "price": 20500,
-    "category": "Ornaments",
+    "name": "Singaraveler Kondai",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.53%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "36",
-    "name": "Divine Artifact #36",
-    "price": 20750,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.54%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Majestic Singaraveler model kondai.",
+    "size": "3 inch dia",
+    "waterResistance": "Yes"
   },
   {
     "id": "37",
-    "name": "Divine Artifact #37",
-    "price": 21000,
-    "category": "Ornaments",
+    "name": "Rayar Kiridam",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.02%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Traditional Rayar style kiridam.",
+    "size": "2 to 4 inch dia",
+    "waterResistance": "Yes"
   },
   {
     "id": "38",
-    "name": "Divine Artifact #38",
-    "price": 21250,
-    "category": "Ornaments",
+    "name": "Ruby Round",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.03%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "backImage": "/Products/WhatsApp%20Image%202026-04-18%20at%207.41.52%20PM.jpeg",
+    "description": "Dual use. Customise design (color & size). Made on order. Exquisite round kiridam with ruby accents.",
+    "size": "3",
+    "waterResistance": "Yes"
   },
   {
     "id": "39",
-    "name": "Divine Artifact #39",
-    "price": 21500,
-    "category": "Ornaments",
+    "name": "Kanthimathi Kondai",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.03%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "40",
-    "name": "Divine Artifact #40",
-    "price": 21750,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.04%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Kanthimathi style traditional kondai.",
+    "size": "3",
+    "waterResistance": "Yes"
   },
   {
     "id": "41",
-    "name": "Divine Artifact #41",
-    "price": 22000,
-    "category": "Ornaments",
+    "name": "Karpagam Kondai",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.05%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Traditional Karpagam model kondai.",
+    "waterResistance": "Yes"
   },
   {
     "id": "42",
-    "name": "Divine Artifact #42",
-    "price": 22250,
-    "category": "Ornaments",
+    "name": "Meen Kondai",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.06%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Unique fish-themed traditional kondai.",
+    "waterResistance": "Yes"
   },
   {
     "id": "43",
-    "name": "Divine Artifact #43",
-    "price": 22500,
-    "category": "Ornaments",
+    "name": "Round Kondai",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.06%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "44",
-    "name": "Divine Artifact #44",
-    "price": 22750,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.07%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order.",
+    "size": "3",
+    "waterResistance": "Yes"
   },
   {
     "id": "45",
-    "name": "Divine Artifact #45",
-    "price": 23000,
-    "category": "Ornaments",
+    "name": "Rajarajan Plain",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.08%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Customise design (color & size). Made on order. Plain but elegant Rajarajan model.",
+    "size": "3",
+    "waterResistance": "Yes"
   },
   {
     "id": "46",
-    "name": "Divine Artifact #46",
-    "price": 23250,
-    "category": "Ornaments",
+    "name": "Andal Kondai",
+    "category": "Kondai Set",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.09%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "47",
-    "name": "Divine Artifact #47",
-    "price": 23500,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.09%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "48",
-    "name": "Divine Artifact #48",
-    "price": 23750,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.10%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "49",
-    "name": "Divine Artifact #49",
-    "price": 24000,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.11%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "backImage": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.10%20PM.jpeg",
+    "description": "Dual use. Customise design (color & size). Made on order. Sacred Andal style traditional kondai.",
+    "size": "3 inch dia",
+    "waterResistance": "Yes"
   },
   {
     "id": "50",
-    "name": "Divine Artifact #50",
-    "price": 24250,
-    "category": "Ornaments",
+    "name": "Murugan Kiridam Set",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.11%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "51",
-    "name": "Divine Artifact #51",
-    "price": 24500,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.12%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "52",
-    "name": "Divine Artifact #52",
-    "price": 24750,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.12%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Traditional Murugan style kiridam set.",
+    "waterResistance": "Yes"
   },
   {
     "id": "53",
-    "name": "Divine Artifact #53",
-    "price": 25000,
-    "category": "Ornaments",
+    "name": "Plain Stone Kiridam 002",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.13%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "54",
-    "name": "Divine Artifact #54",
-    "price": 25250,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.13%20PM%20%282%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Minimalist plain stone kiridam.",
+    "size": "2",
+    "waterResistance": "Yes"
   },
   {
     "id": "55",
-    "name": "Divine Artifact #55",
-    "price": 25500,
-    "category": "Ornaments",
+    "name": "Thiruchandhur Modle Kiridam Set",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.13%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "backImage": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.12%20PM%20%281%29.jpeg",
+    "description": "Dual use. Customise design (color & size). Made on order. Inspired by Thiruchandhur temple traditions.",
+    "waterResistance": "Yes"
   },
   {
     "id": "56",
-    "name": "Divine Artifact #56",
-    "price": 25750,
-    "category": "Ornaments",
+    "name": "Melkotai Rajamudi",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.14%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
-  },
-  {
-    "id": "57",
-    "name": "Divine Artifact #57",
-    "price": 26000,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.14%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Dual use. Customise design (color & size). Made on order. Majestic Melkotai Rajamudi style.",
+    "size": "3 inch dia",
+    "waterResistance": "Yes"
   },
   {
     "id": "58",
-    "name": "Divine Artifact #58",
-    "price": 26250,
-    "category": "Ornaments",
+    "name": "Perumal",
+    "category": "Synthetic Rathanagi",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.26%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Synthetic Rathanagi work. Customise design (color & size). Made on order.",
+    "size": "1.5 ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "59",
-    "name": "Divine Artifact #59",
-    "price": 26500,
-    "category": "Ornaments",
+    "name": "Gothanda Ramar",
+    "category": "Synthetic Rathanagi",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.26%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Synthetic Rathanagi work. Customise design (color & size). Made on order.",
+    "size": "2 ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "60",
-    "name": "Divine Artifact #60",
-    "price": 26750,
-    "category": "Ornaments",
+    "name": "Malaiyaper Model",
+    "category": "Synthetic Rathanagi",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.27%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Synthetic Rathanagi work. Customise design (color & size). Made on order.",
+    "size": "2.5ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "61",
-    "name": "Divine Artifact #61",
-    "price": 27000,
-    "category": "Ornaments",
+    "name": "Pillaiyar",
+    "category": "Synthetic Rathanagi",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.27%20PM%20%282%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Synthetic Rathanagi work. Customise design (color & size). Made on order.",
+    "size": "2ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "62",
-    "name": "Divine Artifact #62",
-    "price": 27250,
-    "category": "Ornaments",
+    "name": "Kanthimathi Ambal",
+    "category": "Synthetic Rathanagi",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.27%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Synthetic Rathanagi work. Customise design (color & size). Made on order.",
+    "size": "5ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "63",
-    "name": "Divine Artifact #63",
-    "price": 27500,
-    "category": "Ornaments",
+    "name": "Kalai Amman",
+    "category": "Synthetic Rathanagi",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.28%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Synthetic Rathanagi work. Customise design (color & size). Made on order.",
+    "size": "2ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "64",
-    "name": "Divine Artifact #64",
-    "price": 27750,
-    "category": "Ornaments",
+    "name": "Vishnu Durgai Amman",
+    "category": "Synthetic Rathanagi",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.28%20PM%20%282%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Synthetic Rathanagi work. Customise design (color & size). Made on order.",
+    "size": "4ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "65",
-    "name": "Divine Artifact #65",
-    "price": 28000,
-    "category": "Ornaments",
+    "name": "Vinayagar",
+    "category": "Synthetic Rathanagi",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.28%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Synthetic Rathanagi work. Customise design (color & size). Made on order.",
+    "size": "2.5ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "66",
-    "name": "Divine Artifact #66",
-    "price": 28250,
-    "category": "Ornaments",
+    "name": "Perumal Kiridam Set",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.29%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Customise design (color & size). Made on order.",
+    "size": "3 inch",
+    "waterResistance": "Yes"
   },
   {
     "id": "67",
-    "name": "Divine Artifact #67",
-    "price": 28500,
-    "category": "Ornaments",
+    "name": "Bagavathi Amman",
+    "category": "Synthetic Rathanagi",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.29%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Synthetic Rathanagi work. Customise design (color & size). Made on order.",
+    "size": "1.5ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "68",
-    "name": "Divine Artifact #68",
-    "price": 28750,
-    "category": "Ornaments",
+    "name": "Perumal Kiridam Set",
+    "category": "Kiridam",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.43.30%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Synthetic stone work. Customise design (color & size). Made on order.",
+    "waterResistance": "Yes"
   },
   {
     "id": "69",
-    "name": "Divine Artifact #69",
-    "price": 29000,
-    "category": "Ornaments",
+    "name": "Kanthimathi Ambal",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.48.53%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "6ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "70",
-    "name": "Divine Artifact #70",
-    "price": 29250,
-    "category": "Ornaments",
+    "name": "Meenakshi Ambal",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.48.54%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "2ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "71",
-    "name": "Divine Artifact #71",
-    "price": 29500,
-    "category": "Ornaments",
+    "name": "Meenakshi Ambal",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.48.57%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "6ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "72",
-    "name": "Divine Artifact #72",
-    "price": 29750,
-    "category": "Ornaments",
+    "name": "Mariamman",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.50.07%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "2.5ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "73",
-    "name": "Divine Artifact #73",
-    "price": 30000,
-    "category": "Ornaments",
+    "name": "Ambal Pinangi",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.50.08%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "6ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "74",
-    "name": "Divine Artifact #74",
-    "price": 30250,
-    "category": "Ornaments",
+    "name": "Nagathamman",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.50.08%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "2ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "75",
-    "name": "Divine Artifact #75",
-    "price": 30500,
-    "category": "Ornaments",
+    "name": "Meenakshi Muthu Kondati",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.50.09%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "10 inch",
+    "waterResistance": "Yes"
   },
   {
     "id": "76",
-    "name": "Divine Artifact #76",
-    "price": 30750,
-    "category": "Ornaments",
+    "name": "Meenakshi Molasathana Kiridam Molde",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.50.09%20PM%20%282%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "10",
+    "waterResistance": "Yes"
   },
   {
     "id": "77",
-    "name": "Divine Artifact #77",
-    "price": 31000,
-    "category": "Ornaments",
+    "name": "Kanthimathi Kiridam",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.50.09%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "1ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "78",
-    "name": "Divine Artifact #78",
-    "price": 31250,
-    "category": "Ornaments",
+    "name": "Sayakondai",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.50.10%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "8 inch",
+    "waterResistance": "Yes"
   },
   {
     "id": "79",
-    "name": "Divine Artifact #79",
-    "price": 31500,
-    "category": "Ornaments",
+    "name": "Sayakondai Meenakshi Ambal Model",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.50.10%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "6ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "80",
-    "name": "Divine Artifact #80",
-    "price": 31750,
-    "category": "Ornaments",
+    "name": "Rathracha Kondai",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.50.11%20PM%20%281%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Sokanathar modle. Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "6ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "81",
-    "name": "Divine Artifact #81",
-    "price": 32000,
-    "category": "Ornaments",
+    "name": "Andal Kondai",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.50.11%20PM%20%282%29.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Srivaliputhur modle. Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "6ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "82",
-    "name": "Divine Artifact #82",
-    "price": 32250,
-    "category": "Ornaments",
+    "name": "Pandiyen Kondai",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.50.11%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Ranganather modle. Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "6ft",
+    "waterResistance": "Yes"
   },
   {
     "id": "83",
-    "name": "Divine Artifact #83",
-    "price": 32500,
-    "category": "Ornaments",
+    "name": "Neelayadakshi Ambal",
+    "category": "Muthangi Work",
     "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.50.16%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "description": "Traditional Muthangi work. Customise design (color & size). Made on order.",
+    "size": "5ft",
+    "waterResistance": "Yes"
   },
   {
-    "id": "84",
-    "name": "Divine Artifact #84",
-    "price": 32750,
-    "category": "Ornaments",
-    "image": "/Products/WhatsApp%20Image%202026-04-18%20at%207.50.17%20PM.jpeg",
-    "description": "An exquisite piece of divine craftsmanship, meticulously hand-carved and adorned with traditional details. This sacred artifact represents the pinnacle of our artisan heritage, perfect for temple adornment and ceremonial use."
+    "id": "85",
+    "name": "Murugan Rajalangaram Half Set",
+    "category": "Rajaalangaram",
+    "image": "/Products/rathnakavasam/WhatsApp%20Image%202026-04-19%20at%202.09.54%20PM%20%281%29.jpeg",
+    "description": "Premium Rajalangaram half set for deities. Customise design (color & size). Made on order.",
+    "size": "2ft",
+    "waterResistance": "Yes"
+  },
+  {
+    "id": "86",
+    "name": "Murugan Rajalangaram Half Set",
+    "category": "Rajaalangaram",
+    "image": "/Products/rathnakavasam/WhatsApp%20Image%202026-04-19%20at%202.09.53%20PM.jpeg",
+    "description": "Premium Rajalangaram half set for deities. Customise design (color & size). Made on order.",
+    "size": "1.5 ft",
+    "waterResistance": "Yes"
+  },
+  {
+    "id": "87",
+    "name": "Murugan Rajalangaram Half Set",
+    "category": "Rajaalangaram",
+    "image": "/Products/rathnakavasam/WhatsApp%20Image%202026-04-19%20at%202.09.55%20PM.jpeg",
+    "description": "Premium Rajalangaram half set for deities. Customise design (color & size). Made on order.",
+    "size": "2ft",
+    "waterResistance": "Yes"
+  },
+  {
+    "id": "88",
+    "name": "Full Rajalangaram Set",
+    "category": "Rajaalangaram",
+    "image": "/Products/rathnakavasam/WhatsApp%20Image%202026-04-19%20at%202.15.41%20PM%20%281%29.jpeg",
+    "backImage": "/Products/rathnakavasam/WhatsApp%20Image%202026-04-19%20at%202.15.41%20PM.jpeg",
+    "description": "Dual-view Full Rajalangaram set with high-detail craftsmanship. Customise design (color & size). Made on order.",
+    "waterResistance": "Yes"
+  },
+  {
+    "id": "89",
+    "name": "Full Rajalangaram Set - Detailed View",
+    "category": "Rajaalangaram",
+    "image": "/Products/rathnakavasam/WhatsApp%20Image%202026-04-19%20at%202.15.41%20PM.jpeg",
+    "description": "High-detail view of the Full Rajalangaram set. Crafted with premium stones and Muthangi work.",
+    "waterResistance": "Yes"
   }
 ];
