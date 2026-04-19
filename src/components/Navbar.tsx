@@ -103,28 +103,18 @@ const Navbar: React.FC = () => {
           ? 'bg-background/80 dark:bg-stone-900/80 backdrop-blur-lg border-b border-outline-variant/5 shadow-lg' 
           : 'bg-transparent backdrop-blur-none'
       }`}>
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center group">
+          <motion.div 
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.9 }}
+            className="w-10 h-10 bg-primary/10 dark:bg-tertiary/10 flex items-center justify-center rounded-xl mr-3 border border-primary/20 dark:border-tertiary/20 transition-colors"
+          >
+            <span className="glare-text text-primary dark:text-tertiary font-black text-2xl leading-none" style={{ fontFamily: "'Noto Serif', serif" }}>S</span>
+          </motion.div>
           <span 
-            className="flex items-center text-primary-container dark:text-white text-2xl font-bold tracking-tight"
+            className="flex items-center text-primary-container dark:text-white text-xl md:text-2xl font-bold tracking-tight"
             style={{ fontFamily: "'Noto Serif', serif" }}
           >
-            <svg 
-              viewBox="0 0 24 24" 
-              width="28" 
-              height="28" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              className="mr-2 text-primary dark:text-tertiary"
-            >
-              <path d="M12 2L8 6h8l-4-4z" />
-              <path d="M6 6h12v4H6z" />
-              <path d="M4 10h16v4H4z" />
-              <path d="M2 14h20v6H2z" />
-              <path d="M10 20v2h4v-2" />
-            </svg>
             Shanmuga Clip Arts
           </span>
         </Link>
