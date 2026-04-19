@@ -107,7 +107,7 @@ const Navbar: React.FC = () => {
           <motion.div 
             whileHover={{ scale: 1.1, rotate: 5 }}
             whileTap={{ scale: 0.9 }}
-            className="w-10 h-10 bg-primary/10 dark:bg-tertiary/10 flex items-center justify-center rounded-xl mr-3 border border-primary/20 dark:border-tertiary/20 transition-colors"
+            className="w-10 h-10 bg-primary/10 dark:bg-tertiary/10 flex items-center justify-center rounded-xl mr-3 transition-colors"
           >
             <span className="glare-text text-primary dark:text-tertiary font-black text-2xl leading-none" style={{ fontFamily: "'Noto Serif', serif" }}>S</span>
           </motion.div>
