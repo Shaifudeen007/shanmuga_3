@@ -266,12 +266,12 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex md:block flex-col space-y-4 md:space-y-6 max-w-2xl relative z-30 p-0 md:pl-0 text-left md:text-left shadow-none lg:translate-x-24 xl:translate-x-48 order-2 md:order-1 mt-4 md:mt-0 mb-20 md:mb-0"
           >
-            <h1 className="text-4xl md:text-6xl lg:text-[5rem] font-serif-title font-bold leading-tight tracking-tighter text-on-surface">
-              Bringing Tradition <br />
-              into a <span className="bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">new era</span>
+            <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-serif-title font-bold leading-[0.95] tracking-tighter text-on-surface">
+              Shanmuga <br />
+              <span className="bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">Clip Arts</span>
             </h1>
-            <p className="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed max-w-lg mx-auto md:mx-0">
-              Crafting divine attire for Hindu deities with modern precision and timeless devotion. Experience the elegance of Antique Gold Kunthan work with premium quality materials.
+            <p className="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed max-w-lg">
+              Crafting premium divine attire for Hindu deities with modern precision and timeless devotion.
             </p>
             <div className="flex gap-4 justify-start md:justify-start">
               <Link to="/products" className="flex-1 max-w-[200px] md:max-w-none md:flex-none">
