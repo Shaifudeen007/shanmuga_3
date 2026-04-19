@@ -35,7 +35,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       />
 
       <div className="relative z-10 flex flex-col h-full">
-        <div className="relative aspect-[4/5] md:aspect-square overflow-hidden bg-white">
+        <div className="relative aspect-square overflow-hidden bg-white">
           <img
             src={product.image}
             alt={product.name}
@@ -47,22 +47,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div className="absolute bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-4 md:translate-y-16 md:group-hover:translate-y-0 transition-all duration-500 z-10 w-full px-3 md:w-auto md:px-0">
             <Link
               to={`/product/${product.id}`}
-              className="w-full md:w-auto p-2.5 md:p-4 bg-white/95 backdrop-blur-md text-primary rounded-xl md:rounded-full shadow-xl flex items-center justify-center gap-2 hover:bg-primary hover:text-white transition-all min-h-[40px] md:min-h-[44px]"
+              className="w-full md:w-auto p-2 md:p-3 bg-white/95 backdrop-blur-md text-primary rounded-lg md:rounded-full shadow-xl flex items-center justify-center gap-2 hover:bg-primary hover:text-white transition-all min-h-[36px] md:min-h-[40px]"
             >
-              <Eye size={18} className="md:w-5 md:h-5" />
-              <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest whitespace-nowrap">View Details</span>
+              <Eye size={16} className="md:w-4 md:h-4" />
+              <span className="text-[9px] md:text-xs font-bold uppercase tracking-widest whitespace-nowrap">View Details</span>
             </Link>
           </div>
         </div>
         
-        <div className="p-3 md:p-8 text-center flex-grow flex flex-col justify-center">
-          <span className="text-[9px] md:text-xs uppercase tracking-[0.2em] text-secondary font-bold mb-1 md:mb-3 block">
+        <div className="p-3 md:p-5 text-center flex-grow flex flex-col justify-center">
+          <span className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-secondary font-bold mb-1 md:mb-2 block">
             {product.category}
           </span>
-          <h3 className="font-headline text-sm md:text-xl font-bold text-primary dark:text-white mb-1 md:mb-3 group-hover:text-secondary transition-colors line-clamp-2">
+          <h3 className="font-headline text-xs md:text-base font-bold text-primary dark:text-white mb-1 md:mb-2 group-hover:text-secondary transition-colors line-clamp-2">
             {product.name}
           </h3>
-          <p className="text-primary/70 font-headline font-bold text-sm md:text-lg">
+          <p className="text-primary/70 font-headline font-bold text-xs md:text-base">
             ₹{product.price.toLocaleString()}
           </p>
         </div>

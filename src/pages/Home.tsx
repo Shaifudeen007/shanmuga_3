@@ -405,7 +405,7 @@ const Home: React.FC = () => {
             />
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
             {featuredProducts.map((product, i) => (
               <motion.div
                 key={product.id}
@@ -414,7 +414,7 @@ const Home: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 * i + 0.3, duration: 0.5 }}
                 whileHover={{ y: -10 }}
-                className="group cursor-pointer w-full max-w-[260px] md:max-w-[280px] mx-auto"
+                className="group cursor-pointer w-full max-w-[200px] md:max-w-[220px] mx-auto"
                 onClick={() => openModal(featuredImages, i)}
               >
                 <div className="relative group">
@@ -429,28 +429,27 @@ const Home: React.FC = () => {
                   />
                   
                   {/* Product Image Box */}
-                  <div className="glare-card relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-5 shadow-xl transition-all duration-500 group-hover:shadow-primary/20 border border-primary/20 dark:border-outline-variant/10 glow-maroon-pulse dark:[animation:none] dark:shadow-none backdrop-blur-md bg-surface-container-low/40 p-2 z-10">
+                  <div className="glare-card relative aspect-square rounded-xl md:rounded-[1.5rem] overflow-hidden mb-3 md:mb-5 shadow-xl transition-all duration-500 group-hover:shadow-primary/20 border border-primary/20 dark:border-outline-variant/10 glow-maroon-pulse dark:[animation:none] dark:shadow-none backdrop-blur-md bg-surface-container-low/40 p-1.5 md:p-2 z-10">
                     <img 
                       src={product.image} 
                       alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 rounded-2xl" 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 rounded-lg md:rounded-2xl" 
                     />
                     
                     {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-6">
-                      <div className="bg-primary text-on-primary px-4 py-2 rounded-lg font-bold text-[10px] tracking-widest uppercase hover:bg-tertiary hover:text-on-tertiary transition-colors shadow-lg">
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center p-4">
+                      <div className="bg-primary text-on-primary px-3 py-1.5 rounded-lg font-bold text-[8px] tracking-widest uppercase hover:bg-tertiary hover:text-on-tertiary transition-colors shadow-lg">
                         View Photo
                       </div>
                     </div>
                   </div>
 
                   {/* Content */}
-                  <div className="space-y-1 text-center md:text-left px-2">
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="text-[9px] uppercase font-bold tracking-widest text-tertiary">Exclusive</span>
-                      <span className="text-on-surface-variant text-[8px]">Featured Artifact</span>
+                  <div className="space-y-0.5 text-center md:text-left px-1">
+                    <div className="flex justify-between items-center mb-0.5">
+                      <span className="text-[8px] uppercase font-bold tracking-widest text-tertiary">Exclusive</span>
                     </div>
-                    <h3 className="text-sm md:text-base font-headline font-bold text-on-surface dark:text-white group-hover:text-primary transition-colors line-clamp-1">
+                    <h3 className="text-xs md:text-sm font-headline font-bold text-on-surface dark:text-white group-hover:text-primary transition-colors line-clamp-1">
                       {product.name}
                     </h3>
                   </div>
