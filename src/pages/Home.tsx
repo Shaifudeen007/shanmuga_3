@@ -266,7 +266,8 @@ const Home: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex md:block flex-col space-y-4 md:space-y-6 max-w-2xl relative z-30 p-0 md:pl-0 text-left md:text-left shadow-none lg:translate-x-24 xl:translate-x-48 order-2 md:order-1 mt-4 md:mt-0 mb-20 md:mb-0"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-serif-title font-bold leading-[0.95] tracking-tighter text-on-surface">
+            <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-serif-title font-bold leading-[0.95] tracking-tighter text-on-surface relative">
+              <span className="absolute -top-4 md:-top-10 left-1 text-base md:text-2xl font-headline italic text-primary/60 tracking-[0.2em] pointer-events-none">Sri</span>
               Shanmuga <br />
               <span className="bg-gradient-to-r from-primary to-tertiary bg-clip-text text-transparent">Clip Arts</span>
             </h1>
